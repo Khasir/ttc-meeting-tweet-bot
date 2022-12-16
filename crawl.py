@@ -12,3 +12,7 @@ class TTCMeetingsChecker:
             response.raise_for_status()
         except requests.exceptions.HTTPError as err:
             print(err)
+
+        soup = BeautifulSoup(response.text, 'html.parser')
+        tags = soup.find('ul', class_='search-result-list')
+        return bool(tags)
