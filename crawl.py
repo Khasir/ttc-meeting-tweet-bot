@@ -9,6 +9,7 @@ class TTCMeetingsChecker:
         self.session = requests.Session()
 
     def check_upcoming_ttc_meetings(self):
+        __ = self.session.get('https://www.ttc.ca/public-meetings')
         response = self.session.get(self.upcoming_url, headers={
             "Content-Type": "application/json; charset=utf-8",
             "Connection": "keep-alive",
