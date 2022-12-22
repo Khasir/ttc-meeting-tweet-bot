@@ -1,0 +1,1189 @@
+
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+<link href="https://ttc-cdn.azureedge.net/-/media/Feature/XA-Extensions/iotaCSS/iotaCSS/Styles/iotaCSS.css?rev=4e8e87035de04a6b98142e1353c08d15" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Core-Libraries/styles/mediaelementplayer.css?rev=48d80d5597624188ad7ce93f135bf629" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Core-Libraries/styles/mediaelementplayer-legacy.css?rev=72af485b4a7f40c58effab26a9730fd2" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Core-Libraries/styles/font-awesomemin.css?rev=9fc5b7e15ee14858b7bd482213bbf1a4" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Core-Libraries/styles/fullcalendar.css?rev=88e8658e1dd340548224a5c29298cbdc" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Core-Libraries/styles/jquerymCustomScrollbar.css?rev=04da3381aa834525b87b802c63f5eba4" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Core-Libraries/styles/jquery-ui.css?rev=c3ac5ba728124304ad3c6c2ee5e68818" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Main-Theme/styles/author.css?rev=00afc172b8f44c19a29a75a806e0c50d" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Main-Theme/styles/core.css?rev=49fe991acc2d48398a517f1c04ac2274" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Main-Theme/styles/file-type-icons.css?rev=989fc01464d844479e85038d082d5809" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Main-Theme/styles/grayscale-mode.css?rev=f6fe87e74ae4445bb474ceb8320d5104" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Main-Theme/styles/reset.css?rev=d54d23c30fc84be6b9c75b3819cbc36e" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Foundation/XA-Extensions/REACT/REACT/styles/optimized-min.css?rev=8d84572f17e24dfc8b9d4bc0c37b1c07" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Foundation/XA-Extensions/REACT/REACT/styles/styles.css?rev=450db958311741d19c352abd95cb39d0" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/background.css?rev=9be9d03a4d8543948b1bb360e1338516" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/boxed.css?rev=682a5e0d550a4d0e863db5ede80ee502" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-accordion.css?rev=1523190739b44bfd98f555fb40239816" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-addthis.css?rev=4bbeaee4ec6f4d1cadded6816b628cd5" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-archive.css?rev=a34a50f04df840a88da95391e4284d26" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-breadcrumb.css?rev=a84ce62568dd461fbce8c83a82521463" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-carousel.css?rev=c77fadf77b284cb8bc69c8a77cd2ff89" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-column-splitter.css?rev=1038833557a448cfa23c9ca34dc4ba9f" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-container.css?rev=2ba4db76f7524e808823b4cc27cec47d" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-divider.css?rev=90b79b3ac388426aa3e2638486092139" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-event-list.css?rev=6a0a0bda26a6425cbb307cac714018a8" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-facebook-comments.css?rev=666bd0a37f4d47ec9a76d10e882adb1c" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-faq-tabs.css?rev=b4388e40380143f99fa8b2b95e35d323" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-feed.css?rev=ba6a357d04aa49738018b6287a2cba0d" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-field-editor.css?rev=118a3aa9ab514743be35320e8263d453" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-file-list.css?rev=27ff3d8bd3bc4a4182a8cb2c47e87160" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-flash.css?rev=56ccdd6a85424758b3f6d92fb8f83b1d" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-flip.css?rev=b122ba16a75149ddab9b88e93b13c3d5" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-forms.css?rev=261a1f3d86d64c2ea04c6d0558f1c6e9" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-fullcalendar.css?rev=ca415fd42cc740448552d87c418f6fd0" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-galleria.css?rev=4ed9515164b24010ae2eb51d70debd6d" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-iframe.css?rev=e7bdbdef15ac4dbd8c8561d6f6c4b8bc" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-image.css?rev=83af8a32cfde49b19dafa093093736fc" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-language-selector.css?rev=95f88049df51458a84a0a1dfba295cc8" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-link.css?rev=a67ddbe2d938420c918c1b2b1fa778c8" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-link-list.css?rev=eb225363b350445ab24005d041dc986c" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-login.css?rev=b8a24cc9d8034fa1862c3ebb7eb1d6e5" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-logout.css?rev=f3a1f2d5131c488d918ddae239101b1e" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-map.css?rev=07a80c7e367d49ad8449ba9daa382b37" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-media-link.css?rev=68567d7b75114aaaac8d818bba14404b" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-navigation.css?rev=aad0675ac89b4ac49e3edb6ddb8ac064" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-page-list.css?rev=b536dd9129194b529fbcb68b8a6f9c70" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-pagination.css?rev=e597319f5ce444e3ba5a03ea0f6e996a" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-playlist.css?rev=46c6212fd4634058b18ea619c7c3382d" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-promo.css?rev=c612d0d78703481aac68a2b535e4eeca" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-related-links.css?rev=e73b61989cf142bc9587728f0440456a" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-richtext-content.css?rev=8e8319d183ce4373871cdfb1e09907c6" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-search-other.css?rev=65d8a92df04c41a4b8c4bfd4f0dbae6b" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-search-results.css?rev=0f21a514ce8e4629946ddc65a25a5091" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-site-search-bing.css?rev=71e5e72f369d4a0abce21ac18b8ca22b" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-site-selector.css?rev=4acd61e4c7de4b39b6d229c57b9c4be7" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-site-wide-alert.css?rev=f642dc649ebe40ba836e1079d85a2fc7" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-social-media-share.css?rev=78ea11a60532479abee3f0ce8a5967a2" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-subway-connecting-line.css?rev=d73d8b09a9de426d8c997e1235ace5e3" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-table.css?rev=e02d20c22fc7406d819093be1b85226c" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-tabs.css?rev=9e2053c72d6040459a9f5cc2d25fc9e6" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-tag-cloud.css?rev=0379fece92594661ac17b3457752ad63" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-tag-list.css?rev=f5aa39745d774395aafcd8a729cf1a8c" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-title.css?rev=3173785b11e74182a9625a75ae233fa0" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-toggle.css?rev=36f04167c8b54bac9762d88c64306a93" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-twitter.css?rev=9895ba4ae00a47a296c4f768eb5e04f6" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/component-video.css?rev=18d4737c7f414e8db05da7c11b209887" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/cookie-notification.css?rev=3a8370f529f94c32b126011a6a22a5c9" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/highlighted.css?rev=048c15072c6342caad27ff104c71b8f2" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/indent.css?rev=ac1751b058cc466a8fc37205800503bb" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/iotaCSS.css?rev=e724906a9f07428385da57aac69959f5" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/link-button.css?rev=f9bba6c7e6404836ad4e03184ec30b4b" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/main.css?rev=fb6720587cc641189872578668a964ca" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/overlay.css?rev=4f884904dc0a4570b1c41f44e11a50e1" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/position.css?rev=105d0754e3e54458abb2b9408d2fc7e0" rel="stylesheet" /><link href="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/styles/promoted-box.css?rev=3fd7d133683047798b7510249cc0a6df" rel="stylesheet" />    
+    
+
+
+    <title>Board Meeting - October 26, 2023</title>
+
+
+
+
+    <link href="https://ttc-cdn.azureedge.net/-/media/Project/TTC/Deployed/Icons/favicon.ico?rev=a770e87d5cd6430a8af6922fdd1cc1b6" rel="shortcut icon" />
+
+
+
+<meta property="og:title"  content="Board Meeting Oct 26" /><meta property="og:url"  content="https://www.ttc.cahttps://www.ttc.ca//en/public-meetings/board/2023/Board-Meeting-Oct-26" />
+
+
+
+
+
+<meta property="twitter:title"  content="Board Meeting Oct 26" /><meta property="twitter:card"  content="summary_large_image" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+  <!-- Google Tag Manager -->
+  <script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '&gtm_auth=jbJKUSYQvSaFC0nVv1RY6g&gtm_preview=env-9&gtm_cookies_win=x';f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P2FJF4');</script>
+  <!-- End Google Tag Manager -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+</head>
+<body class="default-device bodyclass">
+    
+
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2FJF4&gtm_auth=jbJKUSYQvSaFC0nVv1RY6g&gtm_preview=env-9&gtm_cookies_win=x"
+            height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+    
+<!-- #wrapper -->
+<div id="wrapper">
+  <!-- #header -->
+  <header>
+    <div id="header" class="">
+      <div>
+        
+
+
+
+<div class="component container u-1/1 o-grid__col c-beta__container u-bgcolor-black u-color-primary-contrast u-p">
+    <div class="component-content" >
+<div class="component plain-html u-1/1 o-grid__col">
+    <div class="component-content">
+<p>Please make sure your URL begins with <a href="https://www.ttc.ca">www.ttc.ca</a> for the best user experience. Internet Explorer users may experience issues with this website. Please use an alternate browser such as Google Chrome for the best user experience.</p>    </div>
+</div>    </div>
+</div>
+
+
+<div class="component container o-grid__col">
+    <div class="component-content" >
+
+<div class="component link u-1/1 o-grid__col">
+    <div class="component-content">
+
+<div class="u-visible-on-focus c-button c-button--primary u-mb-none field-link"><a href="#main-content" data-variantitemid="{21F1F05E-E6CA-4166-AEDD-3C8FE82B9D32}" data-variantfieldname="Link">Skip to main content</a></div>    </div>
+</div>
+
+
+<div class="component o-container u-1/1 o-grid__col o-container--large c-header__top c-header__top">
+  <div class="component-content" >
+    
+<div class="row component column-splitter o-grid">
+        <div class="u-1/3 u-1/3@sm o-grid__col o-grid__col">
+            
+<div class="component image u-1/1 u-push-1/6@sm o-grid__col c-header__top-logo">
+    <div class="component-content">
+<a title="Logo" href="https://www.ttc.ca/" id="site-logo"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/TTC-LOGO.svg?h=70&amp;iar=0&amp;w=130&amp;rev=4eab8911954346daac6109b0e428a7a8&amp;hash=B51F5613FBD392950421B03466715365" alt="TTC" width="130" height="70" data-variantitemid="{B02FFA18-F042-4C8E-9D1B-8494EE7023B6}" data-variantfieldname="Image" /></a>    </div>
+</div>
+
+        </div>
+        <div class="u-2/3 u-2/3@sm o-grid__col c-header__right o-grid__col">
+            <div class="component plain-html o-grid__col">
+    <div class="component-content">
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+if (window.matchMedia("(min-width: 1024px)").matches) {
+	function googleTranslateElementInit() {
+	   new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+	}
+	var s = document.createElement("script");
+	s.type = "text/javascript";
+	s.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+	document.getElementById("google_translate_element").appendChild(s);
+}
+
+if(window.matchMedia("(max-width: 1023px)").matches){
+	function googleTranslateElementInit2() {
+	   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+	}
+	var s = document.createElement("script");
+	s.type = "text/javascript";
+	s.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2";
+	document.getElementById("google_translate_element").appendChild(s);
+}
+</script>    </div>
+</div>
+        </div>
+</div>
+  </div>
+</div>
+    </div>
+</div>
+
+
+<div class="component container u-1/1 o-grid__col c-navigation">
+    <div class="component-content" >
+
+
+
+<div class="component o-container u-1/1 o-grid__col o-container@lg o-container--large">
+  <div class="component-content" >
+        <div class="component navigation ttc-main-navigation o-grid__col">
+        <div class="component-content">
+            <nav>
+<ul class="clearfix">
+        <li class=" level1 item0 odd first rel-level1">
+<a title="Routes and schedules" href="/routes-and-schedules"><div><div class="navigation-icon field-navigationicon"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/schedules.svg?iar=0&amp;rev=d101e292309541d29ed51107cd58e7e2&amp;hash=F24103A095BB1719D424A1661742ACD8" alt="An open map with a clock on its bottom right corner" data-variantitemid="{C9B173C3-5BD1-4D0E-850D-849AC22E855A}" data-variantfieldname="NavigationIcon" /></div><div class="navigation-title field-navigationtitle">Routes & schedules</div></div></a>
+        </li>
+        <li class=" level1 item1 even rel-level1">
+<a title="Fares-and-passes" href="/Fares-and-passes"><div><div class="navigation-icon field-navigationicon"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/Menu-Bar-Icons/fares-passes.svg?iar=0&amp;rev=8e1a0061e6764bc383fe1d505571631c&amp;hash=8E27962C07801D9DF1FAA62B68DC3C15" alt="" data-variantitemid="{C89FC3A8-2E81-421C-B864-84E40A8A4B17}" data-variantfieldname="NavigationIcon" /></div><div class="navigation-title field-navigationtitle">Fares & passes</div></div></a>
+        </li>
+        <li class=" level1 item2 odd rel-level1">
+<a title="Service advisories" href="/service-advisories"><div><div class="navigation-icon field-navigationicon"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/Menu-Bar-Icons/service-advisories.svg?iar=0&amp;rev=90d605bbe82c4b25bdf180a3c977e81b&amp;hash=491BEFD182427C64D7E1F240CEA5E7B9" alt="" data-variantitemid="{70CF8FC2-7E46-4DF7-8332-038CBBDF5DB5}" data-variantfieldname="NavigationIcon" /></div><div class="navigation-title field-navigationtitle">Service advisories</div></div></a>
+        </li>
+        <li class=" level1 item3 even rel-level1">
+<a title="Customer service" href="/customer-service"><div><div class="navigation-icon field-navigationicon"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/Menu-Bar-Icons/customer-service.svg?iar=0&amp;rev=fd6dcc165dba4de6a1d67bce09a22a6f&amp;hash=2E853FA50FBB672EDD7EA695F4D85A1F" alt="" data-variantitemid="{99A781B7-F43E-45E3-AFAC-DC9C64AC1EBE}" data-variantfieldname="NavigationIcon" /></div><div class="navigation-title field-navigationtitle">Customer service</div></div></a>
+        </li>
+        <li class=" level1 item4 odd rel-level1">
+<a title="Wheel-Trans" href="/wheel-trans"><div><div class="navigation-icon field-navigationicon"><img src="https://ttc-cdn.azureedge.net/-/media/Images/Menu/WheelTrans-icon.svg?h=150&amp;iar=0&amp;w=150&amp;rev=2b61b5711cd448ac8bd8e1163725e96c&amp;hash=47CD5ABA6053735FD030A7A4077C23E5" alt="A bus with a stick figure sitting in a wheel-chair in its centre" width="150" height="150" data-variantitemid="{CD34D46D-9A50-4954-8AAF-0993B5229FBC}" data-variantfieldname="NavigationIcon" /></div><div class="navigation-title field-navigationtitle">Wheel-Trans</div></div></a>
+        </li>
+        <li class=" level1 item5 even rel-level1">
+<a title="Accessibility" href="/accessibility"><div><div class="navigation-icon field-navigationicon"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/accessibility-revised.svg?iar=0&amp;rev=99ce4fe22d45431096a58a5a515a346a&amp;hash=9ADDD028888ABD9789736FB55893A0B2" alt="Accessibility icon" data-variantitemid="{68C2FB53-5725-4650-BB1C-D87CFA6D42CD}" data-variantfieldname="NavigationIcon" /></div><div class="navigation-title field-navigationtitle">Accessibility</div></div></a>
+        </li>
+        <li class=" level1 item6 odd rel-level1">
+<a title="Riding the TTC" href="/riding-the-ttc"><div><div class="navigation-icon field-navigationicon"><img src="https://ttc-cdn.azureedge.net/-/media/Images/Menu/RidingTheTTC-icon.svg?h=150&amp;iar=0&amp;w=150&amp;rev=4a3960bf44794619b3d86ba319ccb6da&amp;hash=C6FB8BAC84A419E1ABFFAA81505DE036" alt="An outline of a bus next to a bus stop pole" width="150" height="150" data-variantitemid="{062BEEEA-829B-4276-BAB7-542094623B65}" data-variantfieldname="NavigationIcon" /></div><div class="navigation-title field-navigationtitle">Riding the TTC</div></div></a>
+        </li>
+        <li class=" level1 item7 even rel-level1">
+<a title="News" href="/news"><div><div class="navigation-icon field-navigationicon"><img src="https://ttc-cdn.azureedge.net/-/media/Images/Menu/News-icon.svg?h=150&amp;iar=0&amp;w=150&amp;rev=ce3293701f004a80a65048be71613a6e&amp;hash=33A8A21610C4366D9FCAA1AFAC238CA4" alt="A megaphone with lines indicating sounds coming out of it" width="150" height="150" data-variantitemid="{0F15E743-E24D-4EC4-A75D-697058356027}" data-variantfieldname="NavigationIcon" /></div><div class="navigation-title field-navigationtitle">News</div></div></a>
+        </li>
+        <li class=" level1 item8 odd last rel-level1">
+<a title="Trip planner" href="/trip-planner"><div><div class="navigation-icon field-navigationicon"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/Menu-Bar-Icons/trip-planner.svg?iar=0&amp;rev=32f58273681b448395db0ca412370a16&amp;hash=0463D7100532F639E3CB3678FB447B1F" alt="" data-variantitemid="{F76C341D-A13E-49D0-8202-6194A8BDE434}" data-variantfieldname="NavigationIcon" /></div><div class="navigation-title field-navigationtitle">Trip planner</div></div></a>
+        </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+
+  </div>
+</div>
+    </div>
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- /#header -->
+  <!-- #content -->
+  <main>
+    <div id="content" class="">
+      <div>
+        
+
+
+
+<div class="component o-container u-1/1 o-grid__col">
+  <div class="component-content" >
+    
+<div class="component breadcrumb c-breadcrumb u-mb-sm u-mt-xl@sm u-mb-xl u-1/1 o-grid__col">
+    <div class="component-content">
+        <nav>
+            <ol>
+                    <li class="breadcrumb-item home">
+<div class="navigation-title field-navigationtitle"><a title="Home" href="/">Home</a></div>                            <span class="separator">/</span>
+                    </li>
+                    <li class="breadcrumb-item last">
+<div class="navigation-title field-navigationtitle"><a title="Public meetings" href="/public-meetings">Public meetings</a></div>                            <span class="separator">/</span>
+                    </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+  </div>
+</div>
+
+
+
+
+<div class="component o-container u-1/1 o-grid__col">
+  <div class="component-content" >
+    
+<div class="component title u-color-black u-1/1 o-grid__col">
+    <div class="component-content">
+<h1 class="u-type--d6 field-title">Board Meeting - October 26, 2023</h1>    </div>
+</div>
+<div class="component divider u-1/2 u-2/5@sm o-grid__col">
+    <div class="component-content">
+        <hr />
+    </div>
+</div>
+
+  </div>
+</div>
+
+
+
+
+<div class="component o-container u-1/1 o-grid__col">
+  <div class="component-content" >
+    <div class="component AddThis u-1/1 o-grid__col">
+  <div class="component-content">
+    
+      <div class="addthis_sharing_toolbox"></div>
+      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-605b74cb73fa91e8"></script>
+      <div class="addthis_inline_share_toolbox"></div>
+  </div>
+</div>
+  </div>
+</div>
+
+
+
+
+<div class="component o-container u-1/1 o-grid__col o-container--h2d3">
+  <div class="component-content" >
+    
+<div class="component heading u-type--d4 u-color-black u-mb-sm u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Meeting Info</h2>  </div>
+</div>
+  </div>
+</div>
+
+
+
+<div class="component o-container u-1/1 o-grid__col">
+  <div class="component-content" >
+    
+<div class="component content u-1/1 o-grid__col">
+    <div class="component-content">
+<div class="u-type--body"><strong class="u-mr-sm">Date:</strong>Thursday, October 26, 2023</div>    </div>
+</div>
+
+  </div>
+</div>
+
+
+
+<div class="component o-container u-1/1 o-grid__col">
+  <div class="component-content" >
+    
+<div class="component content u-1/1 o-grid__col">
+    <div class="component-content">
+<div class="u-type--body"><strong class="u-mr-sm">Start Time:</strong>10:00 a.m. – Public Session</div>    </div>
+</div>
+
+<div class="component content u-1/1 o-grid__col">
+    <div class="component-content">
+<div class="u-type--body"><strong class="u-mr-sm">Location:</strong>Council Chamber, 100 Queen Street West & Virtual Meeting (Hybrid)</div>    </div>
+</div>
+
+<div class="component content u-1/1 o-grid__col">
+    <div class="component-content">
+<div class="u-type--body"><strong class="u-mr-sm">Meeting No:</strong>2076</div>    </div>
+</div>
+
+<div class="component content u-1/1 o-grid__col">
+    <div class="component-content">
+<div class="u-type--body"><strong class="u-mr-sm">Live Stream:</strong><a href="https://www.youtube.com/user/OfficialTTCchannel" data-variantitemid="{84A6BCE5-C5AF-4534-A947-A9ECD7A52A68}" title="Official TTC Youtube channel" data-variantfieldname="LiveStream">Official TTC Youtube channel</a></div>    </div>
+</div>
+
+<div class="component link u-mb-lg u-1/1 o-grid__col">
+    <div class="component-content">
+
+<div class="c-link c-public-meetings__previous field-link"><a data-minutes="1" data-variantitemid="{D3857248-8F46-415E-8C04-D4C45585A8DE}" data-variantfieldname="Link"> </a></div>    </div>
+</div><div class="component media-link file-type-icon-media-link u-1/1 o-grid__col">
+    <div class="component-content">
+       
+               </div>
+</div><div class="component media-link file-type-icon-media-link u-1/1 o-grid__col">
+    <div class="component-content">
+       
+               </div>
+</div><div class="component media-link file-type-icon-media-link u-1/1 o-grid__col">
+    <div class="component-content">
+       
+               </div>
+</div>
+  </div>
+</div>
+
+
+
+<div class="component o-container u-1/1 o-grid__col">
+  <div class="component-content" >
+    
+<div class="component tabs u-1/1 o-grid__col c-public-meetings__tab">
+    <div class="component-content">
+            <div class="tabs-inner">
+                    <ul class="tabs-heading">
+
+
+
+    <li tabindex="-1">
+        <div>
+
+<div class="component content u-1/1 o-grid__col">
+    <div class="component-content">
+<div class="field-heading">Agenda</div>    </div>
+</div>
+
+        </div>
+    </li>
+    <li tabindex="-1">
+        <div>
+
+<div class="component content u-1/1 o-grid__col">
+    <div class="component-content">
+<div class="field-heading">Meeting Minutes</div>    </div>
+</div>
+
+        </div>
+    </li>
+
+                    </ul>
+                    <div class="tabs-container">
+
+
+
+    <div class="tab">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+</div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+    </div>
+</div>
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Board Members</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+<ul style="color: #747474; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 5px 0px; border: 0px; list-style-type: none; list-style-image: initial;">
+    <li style="margin: 0px 0px 0px 15px; padding: 0px; border: 0px; list-style-type: disc; list-style-image: initial;"><span style="width: 100%; margin: 0px; padding: 0px; border: 0px; color: #000000;">Chair - Councillor Jon Burnside</span></li>
+    <li style="margin: 0px 0px 0px 15px; padding: 0px; border: 0px; list-style-type: disc; list-style-image: initial;"><span style="width: 100%; margin: 0px; padding: 0px; border: 0px; color: #000000;">Councillor Paul Ainslie</span></li>
+    <li style="margin: 0px 0px 0px 15px; padding: 0px; border: 0px; list-style-type: disc; list-style-image: initial;"><span style="width: 100%; margin: 0px; padding: 0px; border: 0px; color: #000000;">Joanne De Laurentiis (Citizen)</span></li>
+    <li style="margin: 0px 0px 0px 15px; padding: 0px; border: 0px; list-style-type: disc; list-style-image: initial;"><span style="width: 100%; margin: 0px; padding: 0px; border: 0px; color: #000000;">Councillor Stephen Holyday</span></li>
+    <li style="margin: 0px 0px 0px 15px; padding: 0px; border: 0px; list-style-type: disc; list-style-image: initial;"><span style="width: 100%; margin: 0px; padding: 0px; border: 0px; color: #000000;">Fenton Jagdeo (Citizen)</span></li>
+    <li style="margin: 0px 0px 0px 15px; padding: 0px; border: 0px; list-style-type: disc; list-style-image: initial;"><span style="width: 100%; margin: 0px; padding: 0px; border: 0px; color: #000000;">Ron Lalonde (Citizen)</span></li>
+    <li style="margin: 0px 0px 0px 15px; padding: 0px; border: 0px; list-style-type: disc; list-style-image: initial;"><span style="width: 100%; margin: 0px; padding: 0px; border: 0px; color: #000000;">Councillor Nick Mantas</span></li>
+    <li style="margin: 0px 0px 0px 15px; padding: 0px; border: 0px; list-style-type: disc; list-style-image: initial;"><span style="width: 100%; margin: 0px; padding: 0px; border: 0px; color: #000000;">Councillor Chris Moise</span></li>
+    <li style="margin: 0px 0px 0px 15px; padding: 0px; border: 0px; list-style-type: disc; list-style-image: initial;"><span style="width: 100%; margin: 0px; padding: 0px; border: 0px; color: #000000;">Julie Osborne (Citizen)</span></li>
+</ul>        </div>
+    </div>
+    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Land Acknowledgement</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Declaration Of Interest - Municipal Conflict Of Interest Act</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Minutes Of The Previous Meetings</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Business Arising Out Of Minutes</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Public Presentations</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+<p style="margin-left: 0.25in;">The public may submit written comments or register to speak to the TTC Board. The public may speak to the TTC Board in person or by video conference.</p>
+<p style="margin-left: 0.25in;">Requests to speak must be registered by noon of the business day preceding meeting day by submitting a request to <a href="mailto:commissionservices@ttc.ca">commissionservices@ttc.ca</a> Those who register to speak will be provided with instructions on how to participate in the meeting.</p>        </div>
+    </div>
+    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Presentations/Reports/Other Business</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+    </div>
+    <div class="tab">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Toronto Transit Commission Board</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+    </div>
+</div>
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+<br />        </div>
+    </div>
+    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col" id="backto">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+</div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet o-grid__col" id="land">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Land Acknowledgement</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+
+<div class="component link u-1/1 o-grid__col position-right">
+    <div class="component-content">
+
+<div class="c-link field-link"><a href="#highlights" data-variantitemid="{6662EEC3-3E4C-4E11-BF2C-DA95E4D8125A}" title="Back To List" data-variantfieldname="Link">Back To List</a></div>    </div>
+</div>    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col" id="declaration">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Declaration of Interest - Municipal Conflict of Interest Act</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+
+<div class="component link u-1/1 o-grid__col position-right">
+    <div class="component-content">
+
+<div class="c-link field-link"><a href="#backto" data-variantitemid="{A23CE302-3281-4C63-8E55-D4EE629C3258}" title="Back To List" data-variantfieldname="Link">Back To List</a></div>    </div>
+</div>    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col" id="minutes">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Minutes of the Previous Meeting</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+
+<div class="component link u-1/1 o-grid__col position-right">
+    <div class="component-content">
+
+<div class="c-link field-link"><a href="#backto" data-variantitemid="{B185E0A7-5854-4D55-B913-F21BA4DF8B15}" title="Back To List" data-variantfieldname="Link">Back To List</a></div>    </div>
+</div>    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col" id="business">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Business Arising Out of the Minutes</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+
+<div class="component link u-1/1 o-grid__col position-right">
+    <div class="component-content">
+
+<div class="c-link field-link"><a href="#backto" data-variantitemid="{71639551-466E-40BB-BFB6-BE0AD28E0315}" title="Back To List" data-variantfieldname="Link">Back To List</a></div>    </div>
+</div>    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col" id="public">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Public Presentations</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+
+<div class="component link u-1/1 o-grid__col position-right">
+    <div class="component-content">
+
+<div class="c-link field-link"><a href="#backto" data-variantitemid="{01339A71-8CBF-4612-9653-C0C7AA6F3B94}" title="Back To List" data-variantfieldname="Link">Back To List</a></div>    </div>
+</div>    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+<div class="component snippet u-1/1 o-grid__col" id="presentations">
+    <div class="component-content">
+            <div class="snippet-inner">
+                <div class="snippet-container">
+
+
+
+<div class="snippet">
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+
+<div class="component heading u-type--d4 u-mb-sm u-color-black u-1/1 o-grid__col">
+  <div class="component-content">
+<h2 class="heading field-heading field-heading">Presentations/Reports/Other Business</h2>  </div>
+</div>
+
+    <div class="component rich-text u-1/1 o-grid__col">
+        <div class="component-content">
+        </div>
+    </div>
+
+<div class="component link u-1/1 o-grid__col position-right">
+    <div class="component-content">
+
+<div class="c-link field-link"><a href="#backto" data-variantitemid="{355E420F-10F7-4DB9-BE80-319989B05140}" title="Back To List" data-variantfieldname="Link">Back To List</a></div>    </div>
+</div>    </div>
+</div></div>
+
+                </div>
+            </div>    
+    </div>
+</div>
+    </div>
+
+                    </div>
+            </div>    
+    </div>
+</div>
+
+  </div>
+</div>
+
+
+
+<div class="component o-container u-1/1 o-grid__col">
+  <div class="component-content" >
+    
+  </div>
+</div>
+
+
+
+<div class="component container u-1/1 o-grid__col">
+    <div class="component-content" >
+    </div>
+</div>
+
+<div class="component link u-no-print u-1/1 o-grid__col" id="back-to-top-wrapper">
+    <div class="component-content">
+
+<div class="icon-button"><button class="icon field-icon c-button__back-to-top u-bgcolor-primary field-icon"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/back-to-top-arrow.svg?h=50&amp;iar=0&amp;w=40&amp;rev=7b3e832e640c4c0482c3a4da8971a113&amp;hash=FCC241F6B9BE7C0FC25FE1EEAB9B79D6" alt="Back to top" width="40" height="50" data-variantitemid="{639889DE-D6D4-4A93-B59D-D52F86492D7F}" data-variantfieldname="Icon" /></button></div>    </div>
+</div>
+      </div>
+    </div>
+  </main>
+  <!-- /#content -->
+  <!-- #footer -->
+  <footer>
+    <div id="footer" class="">
+      <div>
+        
+
+
+
+<div class="component container u-1/1 o-grid__col c-footer u-bgcolor-black">
+    <div class="component-content" >
+
+
+
+<div class="component REACT u-1/1 o-grid__col">
+
+
+        <div class="component-content">
+
+            <div data-react-hook data-react-component="LiveAlertsWidget" data-react-props='{&quot;title&quot;:&quot;Live service alerts&quot;,&quot;componentname&quot;:&quot;LiveAlertsWidget&quot;,&quot;fixed&quot;:true,&quot;endpoint&quot;:&quot;https://alerts.ttc.ca/api/alerts/live-alerts&quot;}'></div>
+
+        </div>
+
+      </div>
+
+
+<div class="component o-container u-1/1 o-grid__col o-container--large">
+  <div class="component-content" >
+    
+<div class="row component column-splitter o-grid">
+        <div class="u-1/1 o-grid__col o-grid__col">
+            
+<div class="component link c-footer__contact--mobile u-hidden@md u-mb-xl u-pb-xl u-1/1 o-grid__col">
+    <div class="component-content">
+
+<div class="field-link"><a href="https://www.ttc.ca/customer-service/contact-us" data-variantitemid="{635244C0-72B7-420C-9FF7-61C4129C4071}" title="Contact us" data-variantfieldname="Link">Contact us</a></div>    </div>
+</div>
+<div class="component link-list u-1/1 o-grid__col c-footer__links">
+    <div class="component-content">
+                <ul>
+                <li class="item0 odd first">
+<div class="field-link field-link"><a href="https://www.ttc.ca/about-the-ttc" data-variantitemid="{8AE2EA7D-4D75-4A0E-A75E-B2C9055561B4}" title="About the TTC" data-variantfieldname="Link">About the TTC</a></div>                </li>
+                <li class="item1 even">
+<div class="field-link field-link"><a href="https://www.ttc.ca/transparency-and-accountability" data-variantitemid="{F29163EF-B06A-467A-AE8F-785FC5E0D440}" title="Transparency and accountability" data-variantfieldname="Link">Transparency and accountability</a></div>                </li>
+                <li class="item2 odd last">
+<div class="field-link field-link"><a href="https://www.ttc.ca/about-the-ttc/projects-and-plans" data-variantitemid="{4337883C-02C7-4B83-AA05-5908893D6095}" title="Projects and plans" data-variantfieldname="Link">Projects and plans</a></div>                </li>
+        </ul>
+    </div>
+</div>
+
+        </div>
+        <div class="u-1/1 o-grid__col o-grid__col">
+            
+<div class="component link-list u-1/1 o-grid__col c-footer__links">
+    <div class="component-content">
+                <ul>
+                <li class="item0 odd first">
+<div class="field-link field-link"><a href="https://www.ttc.ca/public-meetings" data-variantitemid="{2292B6E4-F443-4CC4-AB26-1E75DEADDA4C}" title="Public meetings" data-variantfieldname="Link">Public meetings</a></div>                </li>
+                <li class="item1 even">
+<div class="field-link field-link"><a href="https://www.ttc.ca/Jobs" data-variantitemid="{0F70C49F-F0A1-44A4-9DBB-C00AD6EDA28D}" title="Jobs" data-variantfieldname="Link">Jobs</a></div>                </li>
+                <li class="item2 odd last">
+<div class="field-link field-link"><a href="https://www.ttc.ca/doing-business-with-the-ttc" data-variantitemid="{6CB16243-47C7-49C0-A25B-14D5113964C4}" title="Doing business with the TTC" data-variantfieldname="Link">Doing business with the TTC</a></div>                </li>
+        </ul>
+    </div>
+</div>
+
+        </div>
+        <div class="u-1/1 o-grid__col o-grid__col">
+            
+<div class="component link-list u-1/1 o-grid__col c-footer__links">
+    <div class="component-content">
+                <ul>
+                <li class="item0 odd first">
+<div class="field-link field-link"><a href="https://www.ttc.ca/news" data-variantitemid="{7BCDCE51-22AF-4A36-ADAA-250BC04889FB}" title="News" data-variantfieldname="Link">News</a></div>                </li>
+                <li class="item1 even">
+<div class="field-link field-link"><a href="https://www.ttcshop.ca/" rel="noopener noreferrer" data-variantitemid="{05096693-AC6D-4565-B5A0-C5C1E3F0DA7B}" title="TTC Shop" data-variantfieldname="Link" target="_blank">TTC Shop</a></div>                </li>
+                <li class="item2 odd last">
+<div class="field-link field-link"><a href="https://www.ttc.ca/about-the-ttc/faq-page" data-variantitemid="{5AE3879A-3D60-4453-B26C-785B42906244}" title="FAQ" data-variantfieldname="Link">FAQ</a></div>                </li>
+        </ul>
+    </div>
+</div>
+
+        </div>
+        <div class="u-1/1 o-grid__col o-grid__col">
+            
+<div class="component link u-1/1 o-grid__col c-button--fluid">
+    <div class="component-content">
+
+<div class="u-hidden u-block@md c-button c-button--ghost c-button--medium c-button--flush u-mb-none field-link"><a href="https://www.ttc.ca/customer-service/contact-us" data-variantitemid="{635244C0-72B7-420C-9FF7-61C4129C4071}" title="Contact us" data-variantfieldname="Link">Contact us</a></div>    </div>
+</div>
+<div class="component link-list u-1/1 o-grid__col c-footer__social">
+    <div class="component-content">
+                <ul>
+                <li class="item0 odd first">
+<a href="http://twitter.com/TTCnotices" rel="noopener noreferrer" target="_blank"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/2021-Social-Media-Icons/128x128_Twitter_White.svg?h=28&amp;iar=0&amp;w=28&amp;rev=39ca04f45d134228ae427171cb4ef3ba&amp;hash=6D370480B27A51C8F10C904B4EA45A9C" alt="Go to TTC&#39;s Twitter feed" width="28" height="28" data-variantitemid="{5A8C232B-8F60-4E87-91B1-01217E9D32DF}" data-variantfieldname="Icon" /></a>                </li>
+                <li class="item1 even">
+<a href="https://www.facebook.com/TorontoTransitCommission" rel="noopener noreferrer" target="_blank"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/2021-Social-Media-Icons/128x128_Facebook_White.svg?h=28&amp;iar=0&amp;w=28&amp;rev=98a4b5e8b788408b93c65ead3a311296&amp;hash=49ADD719817B3FF18F48CC13A1CFD2E5" alt="Go to TTC&#39;s Facebook page" width="28" height="28" data-variantitemid="{FF99FE81-05E8-4E3B-8BD8-DDC57868CD1B}" data-variantfieldname="Icon" /></a>                </li>
+                <li class="item2 odd">
+<a href="http://www.linkedin.com/company/ttc" rel="noopener noreferrer" target="_blank"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/2021-Social-Media-Icons/128x128_LI_White.svg?h=28&amp;iar=0&amp;w=28&amp;rev=027d73aeba824de7bf2f0140219266da&amp;hash=CCBA88ABB63CD6C7F4FD808189BFAFA3" alt="Go to TTC&#39;s LinkedIn page" width="28" height="28" data-variantitemid="{074D920E-C223-4AAE-9313-1B4EFDF86BF3}" data-variantfieldname="Icon" /></a>                </li>
+                <li class="item3 even">
+<a href="https://www.instagram.com/takethettc" rel="noopener noreferrer" target="_blank"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/2021-Social-Media-Icons/128x128_Insta_White.svg?h=28&amp;iar=0&amp;w=28&amp;rev=4e7766ccc64d49abb3197c3e6b9a4042&amp;hash=D49A57B79EF72B8F9D86BB5943E0C4B5" alt="Go to TTc&#39;s Instagram profile" width="28" height="28" data-variantitemid="{3A8C3271-F521-4F3B-B043-A7D416BC8B11}" data-variantfieldname="Icon" /></a>                </li>
+                <li class="item4 odd last">
+<a href="http://www.youtube.com/officialttcchannel" rel="noopener noreferrer" target="_blank"><img src="https://ttc-cdn.azureedge.net/-/media/Project/TTC/DevProto/Icons/2021-Social-Media-Icons/128x128_Youtube_White.svg?h=28&amp;iar=0&amp;w=28&amp;rev=c68e9e1844cf49768542a312db5940da&amp;hash=BF19F6FBA2702FCD791234752F8F91AF" alt="Go to TTC&#39;s YouTube channel" width="28" height="28" data-variantitemid="{F499F379-3E3B-4D82-9168-003C522D4CD9}" data-variantfieldname="Icon" /></a>                </li>
+        </ul>
+    </div>
+</div>
+
+        </div>
+</div>
+
+
+<div class="component container u-1/1 o-grid__col c-footer__wrapper-secondary-links">
+    <div class="component-content" >
+
+<div class="row component column-splitter o-grid">
+        <div class="u-1/1 u-1/2@md o-grid__col o-grid__col">
+            
+<div class="component link-list u-1/1 o-grid__col c-footer__secondary-links u-mr-xl@md u-mb-xl@md">
+    <div class="component-content">
+                <ul>
+                <li class="item0 odd first">
+<div class="field-link field-link"><a href="https://www.ttc.ca/transparency-and-accountability/policies/web-site-terms-and-conditions-of-use" data-variantitemid="{D93A40F9-5110-45F5-8BF9-F5053BB5F128}" title="Terms" data-variantfieldname="Link">Terms</a></div>                </li>
+                <li class="item1 even">
+<div class="field-link field-link"><a href="https://www.ttc.ca/by-law-no-1" data-variantitemid="{4C4826EA-14C3-45C8-A9BC-E5EFB52564AF}" title="By-law" data-variantfieldname="Link">By-law</a></div>                </li>
+                <li class="item2 odd last">
+<div class="field-link field-link"><a href="https://www.ttc.ca/transparency-and-accountability/policies/Privacy/ttc-privacy-code" data-variantitemid="{1682076A-1901-4149-9BBB-7CE3564E546B}" title="Access &amp; Privacy" data-variantfieldname="Link">Access &amp; Privacy</a></div>                </li>
+        </ul>
+    </div>
+</div>
+
+        </div>
+        <div class="u-1/1 u-1/2@md o-grid__col o-grid__col">
+            
+
+    <div class="component rich-text u-1/1 o-grid__col c-footer__copyright">
+        <div class="component-content">
+Toronto Transit Commission, Copyright 1997-2022        </div>
+    </div>
+
+        </div>
+</div>    </div>
+</div>
+  </div>
+</div>
+    </div>
+</div>
+      </div>
+    </div>
+  </footer>
+  <!-- /#footer -->
+</div>
+<!-- /#wrapper -->
+    
+
+
+
+    <div class="privacy-warning permisive" style="">
+            <div class='close'>
+
+                <a onclick="XA.cookies.removeCookieWarning();">X</a>
+            </div>
+        <div class="info">
+            Cookies help us improve your website experience.<br>
+By using our website, you agree to our use of cookies.
+        </div>
+        <div class="submit">
+
+            <a onclick="XA.cookies.createCookie(&#39;privacy-notification&#39;, 1, 365);XA.cookies.removeCookieWarning();">Confirm</a>
+        </div>
+    </div>
+
+<script src="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Core-Libraries/scripts/optimized-min.js?rev=4372bf71f48d4a31a74d83745b1d0531&t=20210108T172728Z"></script><script src="https://ttc-cdn.azureedge.net/-/media/Base-Themes/XA-API/Scripts/optimized-min.js?rev=a27dc847a84d423ea072db39a93fcee0&t=20210108T172729Z"></script><script src="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Main-Theme/scripts/optimized-min.js?rev=59d0cf50279043d09707bfa01dd2a254&t=20210108T172730Z"></script><script src="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Resolve-Conflicts/Scripts/optimized-min.js?rev=5c0f4cd461b44197b574b75de5b3e786&t=20210108T172731Z"></script><script src="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Google-Maps-JS-Connector/Scripts/optimized-min.js?rev=c5080d8dc702496aa8e1706d3f5d352a&t=20201026T155200Z"></script><script src="https://ttc-cdn.azureedge.net/-/media/Base-Themes/Maps/Scripts/optimized-min.js?rev=d2d4285efa6d47a1a2118322a04accc2&t=20201026T155201Z"></script><script src="https://ttc-cdn.azureedge.net/-/media/Base-Themes/SearchTheme/Scripts/optimized-min.js?rev=88d76b8bdf6146328dcfa2d601bdd033&t=20201026T155203Z"></script><script src="https://ttc-cdn.azureedge.net/-/media/Foundation/XA-Extensions/REACT/REACT/scripts/index.js?rev=7ce044a3ce4945408a6b8a3a076c2380"></script><script src="https://ttc-cdn.azureedge.net/-/media/Themes/TTC/DevProto/Site/scripts/optimized-min.js?rev=fbc57284646548f9885e67eb5292d219&t=20221127T022412Z"></script>    <!-- /#wrapper -->
+    
+    
+
+    <script type="text/javascript">
+        $( ".facet-dropdown-select" ).change(function() {
+            setTimeout(function() {
+                location.reload();
+            }, 1500);
+        }); 
+    </script>
+</body>
+</html>
