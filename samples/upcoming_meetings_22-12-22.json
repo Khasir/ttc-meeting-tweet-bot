@@ -1,0 +1,90 @@
+{
+    "TotalTime": 61,
+    "CountTime": 0,
+    "QueryTime": 4,
+    "Signature": "upcoming",
+    "Index": "sitecore_sxa_web_index",
+    "Count": 10,
+    "Results": [
+        {
+            "Id": "9ae31436-9be1-4ca9-bc9b-f6fa59d5bb48",
+            "Language": "en",
+            "Path": "/sitecore/content/TTC/DevProto/Home/public-meetings/board/2023/Board Meeting Jan 9",
+            "Url": "/public-meetings/board/2023/Board-Meeting-Jan-9",
+            "Name": null,
+            "Html": ""
+        },
+        {
+            "Id": "0e7ee964-1166-4309-b3ed-23f9de7f7c29",
+            "Language": "en",
+            "Path": "/sitecore/content/TTC/DevProto/Home/public-meetings/board/2023/Board Meeting Jul 12",
+            "Url": "/public-meetings/board/2023/Board-Meeting-Jul-12",
+            "Name": null,
+            "Html": ""
+        },
+        {
+            "Id": "a8277215-0c06-4372-8cb8-31fd39e94b35",
+            "Language": "en",
+            "Path": "/sitecore/content/TTC/DevProto/Home/public-meetings/board/2023/Board Meeting Feb 28",
+            "Url": "/public-meetings/board/2023/Board-Meeting-Feb-28",
+            "Name": null,
+            "Html": ""
+        },
+        {
+            "Id": "390fafc0-fce5-4841-ae3b-43174f82e974",
+            "Language": "en",
+            "Path": "/sitecore/content/TTC/DevProto/Home/public-meetings/board/2023/Board Meeting May 8",
+            "Url": "/public-meetings/board/2023/Board-Meeting-May-8",
+            "Name": null,
+            "Html": ""
+        },
+        {
+            "Id": "ca389b5b-ae23-490b-b6d3-3fc8f40ba1f6",
+            "Language": "en",
+            "Path": "/sitecore/content/TTC/DevProto/Home/public-meetings/board/2023/Board Meeting Jun 12",
+            "Url": "/public-meetings/board/2023/Board-Meeting-Jun-12",
+            "Name": null,
+            "Html": ""
+        },
+        {
+            "Id": "572f8174-0f9c-44c4-b1a5-c2708c1f8305",
+            "Language": "en",
+            "Path": "/sitecore/content/TTC/DevProto/Home/public-meetings/board/2023/Board Meeting Sep 26",
+            "Url": "/public-meetings/board/2023/Board-Meeting-Sep-26",
+            "Name": null,
+            "Html": ""
+        },
+        {
+            "Id": "ba624fa2-fd15-455f-9e15-49b2855a007c",
+            "Language": "en",
+            "Path": "/sitecore/content/TTC/DevProto/Home/public-meetings/board/2023/Board Meeting Jan 19",
+            "Url": "/public-meetings/board/2023/Board-Meeting-Jan-19",
+            "Name": null,
+            "Html": ""
+        },
+        {
+            "Id": "84a6bce5-c5af-4534-a947-a9ecd7a52a68",
+            "Language": "en",
+            "Path": "/sitecore/content/TTC/DevProto/Home/public-meetings/board/2023/Board Meeting Oct 26",
+            "Url": "/public-meetings/board/2023/Board-Meeting-Oct-26",
+            "Name": null,
+            "Html": ""
+        },
+        {
+            "Id": "a59c36c5-3264-4bcf-a151-12f478dd4637",
+            "Language": "en",
+            "Path": "/sitecore/content/TTC/DevProto/Home/public-meetings/board/2023/Board Meeting Apr 13",
+            "Url": "/public-meetings/board/2023/Board-Meeting-Apr-13",
+            "Name": null,
+            "Html": ""
+        },
+        {
+            "Id": "f27eddf7-39cb-428d-8c44-a57493ba170a",
+            "Language": "en",
+            "Path": "/sitecore/content/TTC/DevProto/Home/public-meetings/board/2023/Board Meeting Dec 7",
+            "Url": "/public-meetings/board/2023/Board-Meeting-Dec-7",
+            "Name": null,
+            "Html": ""
+        }
+    ]
+}
