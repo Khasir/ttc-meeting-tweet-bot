@@ -11,6 +11,7 @@ import os
 import re
 
 import redis
+import requests
 from bs4 import BeautifulSoup
 from flask import Flask, session, redirect, request
 from requests_oauthlib import OAuth2Session, TokenUpdated
@@ -58,7 +59,7 @@ def check_upcoming():
 
 def post_tweet(payload, token):
     print("Tweeting!")
-    logger.info("Tweeting!")
+    log.info("Tweeting!")
     return requests.post(
         "https://api.twitter.com/2/tweets",
         json=payload,
@@ -71,6 +72,9 @@ def post_tweet(payload, token):
 
 @app.route("/")
 def auth():
+    """
+    Enable a Twitter user to be the host of this bot.
+    """
     global twitter
     twitter = make_token()
     authorization_url, state = twitter.authorization_url(
@@ -82,6 +86,9 @@ def auth():
 
 @app.route("/oauth/callback", methods=["GET"])
 def callback():
+    """
+    Callback for OAuth 2.0.
+    """
     code = request.args.get("code")
     token = twitter.fetch_token(
         token_url=token_url,
