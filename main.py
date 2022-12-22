@@ -1,6 +1,12 @@
+import logging
+
 from bs4 import BeautifulSoup
 
 from crawl import TTCMeetingsChecker
+
+
+# logging.basicConfig(filename='logs\\ttcmeetbot.log', level=logging.INFO)
+log = logging.getLogger(__name__)
 
 
 # filename = 'samples/Public meetings - true.html'
