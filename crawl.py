@@ -146,7 +146,31 @@ class TTCMeetingsChecker:
         Returns:
             new, old, cancelled, completed: lists of meetings.
         """
-        pass
+        latest_ids = {meeting.id for meeting in latest}
+        previous_ids = {meeting.id for meeting in previous}
+
+        new = [meeting for meeting in latest if meeting.id in latest_ids - previous_ids]
+        old = []
+        cancelled = []
+        completed = []
+        for meeting in previous:
+            # Add to old
+            if meeting.id in latest_ids:
+                old.append(meeting)
+            else:
+                # today = datetime.datetime.now(datetime.timezone.utc)
+                # meeting_datetime = datetime.datetime.combine(meeting.date_parsed, meeting.start_time_parsed)
+
+                # Just use date to be more lenient
+                today = datetime.datetime.now(datetime.timezone.utc).date()
+                # Add to cancelled
+                if meeting.date_parsed > today:
+                    cancelled.append(meeting)
+                # Add to completed
+                else:
+                    completed.append(meeting)
+
+        return new, old, cancelled, completed
 
     def update_database(new: list, removed: list):
         """

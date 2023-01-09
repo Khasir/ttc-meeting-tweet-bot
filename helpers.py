@@ -1,4 +1,5 @@
 import datetime
+from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
 from dateutil.parser import parse, ParserError
@@ -34,13 +35,13 @@ class Meeting:
         self.meeting_no = meeting_no
         self.live_stream_html = live_stream
         self.live_stream_str, self.live_stream_url = self.parse_live_stream(live_stream)
-        self.timestamp_utc = datetime.datetime.utcnow()
+        self.timestamp_utc = datetime.datetime.now(datetime.timezone.utc)
 
     @staticmethod
     def parse_date(date: str):
         parsed = None
         try:
-            parsed = parse(date, fuzzy=True).date()
+            parsed = parse(date, fuzzy=True).replace(tzinfo=ZoneInfo("America/Toronto")).date()
             log.info(f'date parsed: {parsed}')
         except ParserError:
             log.warning(f"Could not parse date: {date}")
@@ -50,7 +51,7 @@ class Meeting:
     def parse_time(time: str):
         parsed = None
         try:
-            parsed = parse(time, fuzzy=True).time()
+            parsed = parse(time, fuzzy=True).replace(tzinfo=ZoneInfo("America/Toronto")).time()
             log.info(f"time parsed: {time} -> {parsed}")
         except ParserError:
             log.warning(f"Could not parse start time: {time}")
