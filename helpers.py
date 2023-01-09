@@ -1,0 +1,85 @@
+import datetime
+
+from bs4 import BeautifulSoup
+from dateutil.parser import parse, ParserError
+
+log = logging.getLogger(__name__)
+
+
+class Meeting:
+    def __init__(
+            self,
+            id: str,
+            language: str = None,
+            path: str = None,
+            url: str = None,
+            name: str = None,
+            html: str = None,
+            date: str = None,
+            start_time: str = None,
+            location: str = None,
+            meeting_no: str = None,
+            live_stream: str = None):
+        self.id = id
+        self.language = language[:2]
+        self.path = path
+        self.url = url
+        self.name = name
+        self.html = html
+        self.date_raw = date
+        self.date_parsed = self.parse_date(date)
+        self.start_time_raw = start_time
+        self.start_time_parsed = self.parse_time(start_time)
+        self.location = location
+        self.meeting_no = meeting_no
+        self.live_stream_html = live_stream
+        self.live_stream_str, self.live_stream_url = self.parse_live_stream(live_stream)
+        self.timestamp_utc = datetime.datetime.utcnow()
+
+    @staticmethod
+    def parse_date(date: str):
+        parsed = None
+        try:
+            parsed = parse(date, fuzzy=True).date()
+            log.info(f'date parsed: {parsed}')
+        except ParserError:
+            log.warning(f"Could not parse date: {date}")
+        return parsed
+
+    @staticmethod
+    def parse_time(time: str):
+        parsed = None
+        try:
+            parsed = parse(time, fuzzy=True).time()
+            log.info(f"time parsed: {time} -> {parsed}")
+        except ParserError:
+            log.warning(f"Could not parse start time: {time}")
+        return parsed
+
+    @staticmethod
+    def parse_live_stream(html: str):
+        text = None
+        url = None
+        soup = BeautifulSoup(html, 'html.parser')
+        anchor = soup.find('a')
+        if anchor:
+            url = anchor.get('href')
+            log.info(f"url found: {url}")
+        return soup.text, url
+
+    @classmethod
+    def from_dict(cls, meeting: dict):
+        ret = Meeting(
+            id=meeting['id'],
+            language=meeting.get('language'),
+            path=meeting.get('path'),
+            url=meeting.get('url'),
+            name=meeting.get('name'),
+            html=meeting.get('html'),
+            date=meeting.get('date'),
+            start_time=meeting.get('start_time'),
+            location=meeting.get('location'),
+            meeting_no=meeting.get('meeting_no'),
+            live_stream=meeting.get('live_stream')
+        )
+        return ret

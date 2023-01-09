@@ -1,8 +1,19 @@
+"""
+
+Features:
+- Detect when new meetings are scheduled
+- Detect if a meeting is scheduled for today
+- Detect when scheduled meetings are cancelled
+"""
+
+
 import logging
 
 import requests
 from bs4 import BeautifulSoup
 from dateutil.parser import parse, ParserError
+
+from helpers import Meeting
 
 
 log = logging.getLogger(__name__)
@@ -29,7 +40,7 @@ class TTCMeetingsChecker:
         """
         Get all upcoming meetings listed on the TTC website.
         Returns:
-            meetings: list of upcoming meeting objects
+            meetings: list of the latest upcoming meetings
         """
         # Get meetings
         response = self.session.get(self.upcoming_url, headers=self.headers)
@@ -73,22 +84,24 @@ class TTCMeetingsChecker:
                 # Date
                 if element.text.startswith('Date:'):
                     field = element.text[len('Date:'):].strip()
-                    meeting['date_raw'] = field
-                    log.info(f'date_raw: {field}')
-                    try:
-                        meeting['date_parsed'] = parse(field, fuzzy=True).date()
-                        log.info(f'date_parsed: {meeting["date_parsed"]}')
-                    except ParserError:
-                        log.warning(f"Could not parse date: {field}")
+                    meeting['date'] = field
+                    # meeting['date_raw'] = field
+                    # log.info(f'date_raw: {field}')
+                    # try:
+                    #     meeting['date_parsed'] = parse(field, fuzzy=True).date()
+                    #     log.info(f'date_parsed: {meeting["date_parsed"]}')
+                    # except ParserError:
+                    #     log.warning(f"Could not parse date: {field}")
                 # Time
                 elif element.text.startswith('Start Time:'):
                     field = element.text[len('Start Time:'):].strip()
-                    meeting['start_time_raw'] = field
-                    try:
-                        meeting['start_time_parsed'] = parse(field, fuzzy=True).time()
-                        log.info(f"start_time_parsed: {meeting['start_time_parsed']}")
-                    except ParserError:
-                        log.warning(f"Could not parse start time: {field}")
+                    meeting['start_time'] = field
+                    # meeting['start_time_raw'] = field
+                    # try:
+                    #     meeting['start_time_parsed'] = parse(field, fuzzy=True).time()
+                    #     log.info(f"start_time_parsed: {meeting['start_time_parsed']}")
+                    # except ParserError:
+                    #     log.warning(f"Could not parse start time: {field}")
                 # Location
                 elif element.text.startswith('Location:'):
                     field = element.text[len('Location:'):].strip()
@@ -101,12 +114,44 @@ class TTCMeetingsChecker:
                     log.info(f'meeting_no: {field}')
                 # Live stream info
                 elif element.text.startswith('Live Stream:'):
-                    field = element.text[len('Live Stream:'):].strip()
-                    meeting['live_stream_str'] = field
-                    log.info(f'live_stream_str: {field}')
-                    anchor = element.find('a')
-                    if anchor:
-                        meeting['live_stream_url'] = anchor.get('href')
-                    log.info(f"live_stream_url: {meeting.get('live_stream_url')}")
+                    meeting['live_stream'] = str(element.find('a'))
+                    # field = element.text[len('Live Stream:'):].strip()
+                    # meeting['live_stream_str'] = field
+                    # log.info(f'live_stream_str: {field}')
+                    # anchor = element.find('a')
+                    # if anchor:
+                    #     meeting['live_stream_url'] = anchor.get('href')
+                    # log.info(f"live_stream_url: {meeting.get('live_stream_url')}")
 
-        return meetings
+        return [Meeting.from_dict(meeting) for meeting in meetings]
+
+    def get_seen_meetings():
+        """
+        Query database for meetings that we've already scraped.
+        Returns:
+            meetings: list of previously seen meetings
+        """
+        pass
+
+    def get_diff_meetings(latest: list, previous: list) -> tuple:
+        """
+        Determine which meetings are:
+            - new (not seen before)
+            - old (already seen and still upcoming)
+            - cancelled (no longer planned and whose date has not passed)
+            - completed (taken place as planned)
+        Params:
+            latest: list of meetings from the latest scrape
+            previous: list of meetings from the database
+        Returns:
+            new, old, cancelled, completed: lists of meetings.
+        """
+        pass
+
+    def update_database(new: list, removed: list):
+        """
+        Insert new meetings and delete or archive the removed meetings from the database.
+        Removed meetings are deleted if they were cancelled.
+        Removed meetings are archived if the date has come and gone.
+        """
+        pass
