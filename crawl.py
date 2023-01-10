@@ -9,6 +9,7 @@ Features:
 
 import logging
 
+import psycopg
 import requests
 from bs4 import BeautifulSoup
 from dateutil.parser import parse, ParserError
@@ -129,15 +130,18 @@ class TTCMeetingsChecker:
 
         return [Meeting.from_dict(meeting) for meeting in meetings]
 
-    def get_seen_meetings():
+    def get_seen_meetings(self):
         """
         Query database for meetings that we've already scraped.
         Returns:
             meetings: list of previously seen meetings
         """
-        pass
+        query = "SELECT * FROM upcoming"
+        with psycopg.connect('dbname=meetings user=postgres password=postgres', row_factory=psycopg.rows.dict_row) as conn:
+            results = conn.execute(query)
+        meetings = [Meeting.from_dict(r) for r in results]
 
-    def get_diff_meetings(latest: list, previous: list) -> tuple:
+    def get_diff_meetings(self, latest: list, previous: list) -> tuple:
         """
         Determine which meetings are:
             - new (not seen before)
@@ -176,7 +180,7 @@ class TTCMeetingsChecker:
 
         return new, old, cancelled, completed
 
-    def update_database(new: list, cancelled: list, completed: list):
+    def update_database(self, new: list, cancelled: list, completed: list):
         """
         Insert new meetings and archive the cancelled or completed meetings from the database.
         """
@@ -222,6 +226,7 @@ class TTCMeetingsChecker:
                     meeting.live_stream_url,
                     meeting.timestamp_utc
                 ))
+            log.info(f"{len(new)} new meetings added")
             # Add cancelled and completed meetings to archive
             for meeting in cancelled:
                 query = """
@@ -313,3 +318,5 @@ class TTCMeetingsChecker:
                 )
             """
             conn.execute(query)
+            log.info(f"{len(cancelled)} meetings marked as cancelled")
+            log.info(f"{len(completed)} meetings marked as completed")

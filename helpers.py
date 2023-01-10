@@ -1,4 +1,5 @@
 import datetime
+import logging
 from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
@@ -23,20 +24,20 @@ class Meeting:
             meeting_no: str = None,
             live_stream: str = None):
         self.id = id
-        self.language = language[:2]
+        self.language = language[:2] if language else None
         self.path = path
         self.url = url
         self.name = name
         self.html = html
         self.title = title
         self.date_raw = date
-        self.date_parsed_utc = self.parse_date(date)
+        self.date_parsed_utc = self.parse_date(date) if date else None
         self.start_time_raw = start_time
-        self.start_time_parsed_utc = self.parse_time(start_time)
+        self.start_time_parsed_utc = self.parse_time(start_time) if start_time else None
         self.location = location
         self.meeting_no = meeting_no
         self.live_stream_html = live_stream
-        self.live_stream_str, self.live_stream_url = self.parse_live_stream(live_stream)
+        self.live_stream_str, self.live_stream_url = self.parse_live_stream(live_stream) if live_stream else (None, None)
         self.timestamp_utc = datetime.datetime.now(datetime.timezone.utc)
 
     @staticmethod
