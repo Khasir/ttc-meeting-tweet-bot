@@ -41,6 +41,7 @@ code_challenge = code_challenge.replace("=", "")
 
 # Logs
 # logging.basicConfig(filename='logs\\ttcmeetbot.log', level=logging.INFO)
+logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
 
 

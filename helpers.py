@@ -16,6 +16,7 @@ class Meeting:
             url: str = None,
             name: str = None,
             html: str = None,
+            title: str = None,
             date: str = None,
             start_time: str = None,
             location: str = None,
@@ -27,10 +28,11 @@ class Meeting:
         self.url = url
         self.name = name
         self.html = html
+        self.title = title
         self.date_raw = date
-        self.date_parsed = self.parse_date(date)
+        self.date_parsed_utc = self.parse_date(date)
         self.start_time_raw = start_time
-        self.start_time_parsed = self.parse_time(start_time)
+        self.start_time_parsed_utc = self.parse_time(start_time)
         self.location = location
         self.meeting_no = meeting_no
         self.live_stream_html = live_stream
@@ -41,7 +43,7 @@ class Meeting:
     def parse_date(date: str):
         parsed = None
         try:
-            parsed = parse(date, fuzzy=True).replace(tzinfo=ZoneInfo("America/Toronto")).date()
+            parsed = parse(date, fuzzy=True).replace(tzinfo=ZoneInfo("America/Toronto")).astimezone(ZoneInfo("UTC")).date()
             log.info(f'date parsed: {parsed}')
         except ParserError:
             log.warning(f"Could not parse date: {date}")
@@ -49,9 +51,12 @@ class Meeting:
 
     @staticmethod
     def parse_time(time: str):
+        """
+        Assumes time is in the America/Toronto timezone.
+        """
         parsed = None
         try:
-            parsed = parse(time, fuzzy=True).replace(tzinfo=ZoneInfo("America/Toronto")).time()
+            parsed = parse(time, fuzzy=True).replace(tzinfo=ZoneInfo("America/Toronto")).astimezone(ZoneInfo("UTC")).time()
             log.info(f"time parsed: {time} -> {parsed}")
         except ParserError:
             log.warning(f"Could not parse start time: {time}")
@@ -77,6 +82,7 @@ class Meeting:
             url=meeting.get('url'),
             name=meeting.get('name'),
             html=meeting.get('html'),
+            title=meeting.get('title'),
             date=meeting.get('date'),
             start_time=meeting.get('start_time'),
             location=meeting.get('location'),

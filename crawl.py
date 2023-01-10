@@ -80,6 +80,10 @@ class TTCMeetingsChecker:
 
             # Get more info
             soup = BeautifulSoup(response.text, 'html.parser')
+            # Title
+            field = soup.find('h1', class_='u-type--d6 field-title')
+            if field:
+                meeting['title'] = field.text.strip()
             for element in soup.find_all('div', class_='u-type--body'):
                 # Date
                 if element.text.startswith('Date:'):
@@ -149,7 +153,7 @@ class TTCMeetingsChecker:
         latest_ids = {meeting.id for meeting in latest}
         previous_ids = {meeting.id for meeting in previous}
 
-        new = [meeting for meeting in latest if meeting.id in latest_ids - previous_ids]
+        new = [meeting for meeting in latest if meeting.id not in previous_ids]
         old = []
         cancelled = []
         completed = []
@@ -172,10 +176,140 @@ class TTCMeetingsChecker:
 
         return new, old, cancelled, completed
 
-    def update_database(new: list, removed: list):
+    def update_database(new: list, cancelled: list, completed: list):
         """
-        Insert new meetings and delete or archive the removed meetings from the database.
-        Removed meetings are deleted if they were cancelled.
-        Removed meetings are archived if the date has come and gone.
+        Insert new meetings and archive the cancelled or completed meetings from the database.
         """
-        pass
+        with psycopg.connect('dbname=meetings user=postgres password=postgres') as conn:
+            # Insert new meetings
+            for meeting in new:
+                query = """
+                    INSERT INTO upcoming (
+                        id,
+                        language,
+                        path,
+                        url,
+                        name,
+                        html,
+                        title,
+                        date_raw,
+                        date_parsed_utc,
+                        start_time_raw,
+                        start_time_parsed_utc,
+                        location,
+                        meeting_no,
+                        live_stream_str,
+                        live_stream_url,
+                        timestamp_utc
+                    )
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                """
+                conn.execute(query, (
+                    meeting.id,
+                    meeting.language,
+                    meeting.path,
+                    meeting.url,
+                    meeting.name,
+                    meeting.html,
+                    meeting.title,
+                    meeting.date_raw,
+                    meeting.date_parsed_utc,
+                    meeting.start_time_raw,
+                    meeting.start_time_parsed_utc,
+                    meeting.location,
+                    meeting.meeting_no,
+                    meeting.live_stream_str,
+                    meeting.live_stream_url,
+                    meeting.timestamp_utc
+                ))
+            # Add cancelled and completed meetings to archive
+            for meeting in cancelled:
+                query = """
+                    INSERT INTO archived (
+                        id,
+                        language,
+                        path,
+                        url,
+                        name,
+                        html,
+                        title,
+                        date_raw,
+                        date_parsed_utc,
+                        start_time_raw,
+                        start_time_parsed_utc,
+                        location,
+                        meeting_no,
+                        live_stream_str,
+                        live_stream_url,
+                        timestamp_utc,
+                        status
+                    )
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'CANCELLED')
+                """
+                conn.execute(query, (
+                    meeting.id,
+                    meeting.language,
+                    meeting.path,
+                    meeting.url,
+                    meeting.name,
+                    meeting.html,
+                    meeting.title,
+                    meeting.date_raw,
+                    meeting.date_parsed_utc,
+                    meeting.start_time_raw,
+                    meeting.start_time_parsed_utc,
+                    meeting.location,
+                    meeting.meeting_no,
+                    meeting.live_stream_str,
+                    meeting.live_stream_url,
+                    meeting.timestamp_utc
+                ))
+            for meeting in completed:
+                query = """
+                    INSERT INTO archived (
+                        id,
+                        language,
+                        path,
+                        url,
+                        name,
+                        html,
+                        title,
+                        date_raw,
+                        date_parsed_utc,
+                        start_time_raw,
+                        start_time_parsed_utc,
+                        location,
+                        meeting_no,
+                        live_stream_str,
+                        live_stream_url,
+                        timestamp_utc,
+                        status
+                    )
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'COMPLETED')
+                """
+                conn.execute(query, (
+                    meeting.id,
+                    meeting.language,
+                    meeting.path,
+                    meeting.url,
+                    meeting.name,
+                    meeting.html,
+                    meeting.title,
+                    meeting.date_raw,
+                    meeting.date_parsed_utc,
+                    meeting.start_time_raw,
+                    meeting.start_time_parsed_utc,
+                    meeting.location,
+                    meeting.meeting_no,
+                    meeting.live_stream_str,
+                    meeting.live_stream_url,
+                    meeting.timestamp_utc
+                ))
+            # Removed cancelled and completed meetings from upcoming
+            query = """
+                DELETE FROM upcoming
+                WHERE id IN (
+                    SELECT id FROM archived
+                )
+            """
+            conn.execute(query)
