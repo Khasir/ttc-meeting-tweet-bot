@@ -140,6 +140,7 @@ class TTCMeetingsChecker:
         with psycopg.connect('dbname=meetings user=postgres password=postgres', row_factory=psycopg.rows.dict_row) as conn:
             results = conn.execute(query)
         meetings = [Meeting.from_dict(r) for r in results]
+        return meetings
 
     def get_diff_meetings(self, latest: list, previous: list) -> tuple:
         """
