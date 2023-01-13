@@ -36,6 +36,7 @@ class TTCMeetingsChecker:
             'User-Agent': f'TTCMeetBot/{VERSION}',
         }
         self.session = requests.Session()
+        log.info(f"initialized TTC meetings checker: {str(self)}")
 
     def get_upcoming_meetings(self) -> list:
         """
@@ -85,15 +86,18 @@ class TTCMeetingsChecker:
             field = soup.find('h1', class_='u-type--d6 field-title')
             if field:
                 meeting['title'] = field.text.strip()
+                log.info(f'title: {meeting["title"]}')
             for element in soup.find_all('div', class_='u-type--body'):
                 # Date
                 if element.text.startswith('Date:'):
                     field = element.text[len('Date:'):].strip()
                     meeting['date'] = field
+                    log.info(f'date_raw: {field}')
                 # Time
                 elif element.text.startswith('Start Time:'):
                     field = element.text[len('Start Time:'):].strip()
                     meeting['start_time'] = field
+                    log.info(f'start_time_raw: {field}')
                 # Location
                 elif element.text.startswith('Location:'):
                     field = element.text[len('Location:'):].strip()
@@ -120,6 +124,7 @@ class TTCMeetingsChecker:
         with psycopg.connect('dbname=meetings user=postgres password=postgres', row_factory=psycopg.rows.dict_row) as conn:
             results = conn.execute(query)
         meetings = [Meeting.from_dict(r) for r in results]
+        log.info(f'queried and found {len(meetings)} meetings in DB')
         return meetings
 
     def get_diff_meetings(self, latest: list, previous: list) -> tuple:
@@ -159,6 +164,7 @@ class TTCMeetingsChecker:
                 else:
                     completed.append(meeting)
 
+        log.info(f'meeting comparison: {len(new)} new, {len(old)} old, {len(cancelled)} cancelled, {len(completed)} completed')
         return new, old, cancelled, completed
 
     def update_database(self, new: list, cancelled: list, completed: list):
@@ -207,7 +213,7 @@ class TTCMeetingsChecker:
                     meeting.live_stream_url,
                     meeting.timestamp_utc
                 ))
-            log.info(f"{len(new)} new meetings added")
+            log.info(f"{len(new)} new meetings added to DB")
             # Add cancelled and completed meetings to archive
             for meeting in cancelled:
                 query = """
@@ -299,5 +305,8 @@ class TTCMeetingsChecker:
                 )
             """
             conn.execute(query)
-            log.info(f"{len(cancelled)} meetings marked as cancelled")
-            log.info(f"{len(completed)} meetings marked as completed")
+            log.info(f"{len(cancelled)} meetings marked as cancelled in DB")
+            log.info(f"{len(completed)} meetings marked as completed in DB")
+
+    def __str__(self):
+        return f"TTCMeetingsChecker(upcoming_url={self.upcoming_url}, past_url={self.past_url}, base_url={self.base_url})"

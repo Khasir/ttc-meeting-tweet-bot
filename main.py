@@ -40,7 +40,8 @@ log = logging.getLogger(__name__)
 
 
 @app.route('/', methods=['GET'])
-def tweet_new_and_cancelled_meetings(refresh_token = None):
+def tweet_meeting_updates(refresh_token = None):
+    log.info("checking for meeting updates")
     # Update database
     checker = TTCMeetingsChecker(
         upcoming_url='https://www.ttc.ca//sxa/search/results/?customdaterangefacet=Upcoming',
@@ -57,6 +58,7 @@ def tweet_new_and_cancelled_meetings(refresh_token = None):
         text += "s" if len(new) > 1 else ""
         text += "!"
         response = twitter_api.update_status(text)
+        log.info(f"tweeted: {text}")
         prev_tweet_id = response.id
 
         # Tweet each meeting
@@ -67,8 +69,13 @@ def tweet_new_and_cancelled_meetings(refresh_token = None):
                 in_reply_to_status_id=prev_tweet_id,
                 auto_populate_reply_metadata=True
             )
+            log.info(f"tweeted in thread: {text}")
             prev_tweet_id = response.id
 
+    else:
+        log.info("no meeting updates found")
+
+    log.info("checked for meeting updates successfully")
     return "Success", 200
 
 

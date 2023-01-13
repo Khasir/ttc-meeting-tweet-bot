@@ -45,9 +45,9 @@ class Meeting:
         parsed = None
         try:
             parsed = parse(date, fuzzy=True).replace(tzinfo=ZoneInfo("America/Toronto")).astimezone(ZoneInfo("UTC")).date()
-            log.info(f'date parsed: {parsed}')
+            log.info(f'date parsed: {date} -> {parsed}')
         except ParserError:
-            log.warning(f"Could not parse date: {date}")
+            log.warning(f"could not parse date: {date}")
         return parsed
 
     @staticmethod
@@ -60,7 +60,7 @@ class Meeting:
             parsed = parse(time, fuzzy=True).replace(tzinfo=ZoneInfo("America/Toronto")).astimezone(ZoneInfo("UTC")).time()
             log.info(f"time parsed: {time} -> {parsed}")
         except ParserError:
-            log.warning(f"Could not parse start time: {time}")
+            log.warning(f"could not parse start time: {time}")
         return parsed
 
     @staticmethod
@@ -71,7 +71,7 @@ class Meeting:
         anchor = soup.find('a')
         if anchor:
             url = anchor.get('href')
-            log.info(f"url found: {url}")
+            log.info(f"live stream url found: {url}")
         return soup.text, url
 
     @classmethod
