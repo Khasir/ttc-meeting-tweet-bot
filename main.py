@@ -101,9 +101,26 @@ def tweet_meeting_updates():
 
 
 def tweet_todays_meetings():
+    log.info("checking for today's meetings")
     meetings = checker.get_seen_meetings()
+    meetings += checker.get_archived_meetings()
+
+    # Get today's`meetings
+    meets_to_tweet = []
+    today = datetime.datetime.now(tz=ZoneInfo("America/Toronto")).date()
     for meeting in meetings:
-        pass
+        if meeting.date_parsed_et == today:
+            meets_to_tweet.append(meeting)
+    log.info(f"found {len(meets_to_tweet)} meetings today")
+
+    # Tweet them, sorted by time
+    meets_to_tweet = sorted(meets_to_tweet, key=lambda x: x.start_time_parsed_et if x.start_time_parsed_et else datetime.time(23, 59))
+    for meeting in meets_to_tweet:
+        text = "MEETING TODAY\n" + str(meeting)
+        response = twitter_api.update_status(text)
+        log.info(f"tweeted: {text}")
+
+    log.info("done checking for today's meetings")
 
 
 if __name__ == '__main__':
