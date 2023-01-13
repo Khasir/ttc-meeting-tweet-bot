@@ -137,9 +137,22 @@ def tweet_new_and_cancelled_meetings(refresh_token = None):
     checker.update_database(new, cancelled, completed)
 
     # Tweet
-    payload = {"text": f"Found {len(new)} meetings!"}
-    # post_tweet(payload, refresh_token)
-    twitter_api.update_status(payload['text'])
+    if len(new):
+        text = f"{len(new)} new scheduled meeting"
+        text += "s" if len(new) > 1 else ""
+        text += "!"
+        response = twitter_api.update_status(text)
+        prev_tweet_id = response.id
+
+        for meeting in new:
+            text = str(meeting)
+            response = twitter_api.update_status(
+                text,
+                in_reply_to_status_id=prev_tweet_id,
+                auto_populate_reply_metadata=True
+            )
+            prev_tweet_id = response.id
+
     return "Success", 200
 
 

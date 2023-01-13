@@ -91,3 +91,13 @@ class Meeting:
             live_stream=meeting.get('live_stream')
         )
         return ret
+
+    def __str__(self) -> str:
+        text = self.title + '\n'
+        text += self.start_time_raw + '\n'
+        text += self.location + '\n'
+        text += self.url
+        return text
+
+    def __repr__(self):
+        return self.__dict__
