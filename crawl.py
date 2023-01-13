@@ -90,23 +90,10 @@ class TTCMeetingsChecker:
                 if element.text.startswith('Date:'):
                     field = element.text[len('Date:'):].strip()
                     meeting['date'] = field
-                    # meeting['date_raw'] = field
-                    # log.info(f'date_raw: {field}')
-                    # try:
-                    #     meeting['date_parsed'] = parse(field, fuzzy=True).date()
-                    #     log.info(f'date_parsed: {meeting["date_parsed"]}')
-                    # except ParserError:
-                    #     log.warning(f"Could not parse date: {field}")
                 # Time
                 elif element.text.startswith('Start Time:'):
                     field = element.text[len('Start Time:'):].strip()
                     meeting['start_time'] = field
-                    # meeting['start_time_raw'] = field
-                    # try:
-                    #     meeting['start_time_parsed'] = parse(field, fuzzy=True).time()
-                    #     log.info(f"start_time_parsed: {meeting['start_time_parsed']}")
-                    # except ParserError:
-                    #     log.warning(f"Could not parse start time: {field}")
                 # Location
                 elif element.text.startswith('Location:'):
                     field = element.text[len('Location:'):].strip()
@@ -120,13 +107,6 @@ class TTCMeetingsChecker:
                 # Live stream info
                 elif element.text.startswith('Live Stream:'):
                     meeting['live_stream'] = str(element.find('a'))
-                    # field = element.text[len('Live Stream:'):].strip()
-                    # meeting['live_stream_str'] = field
-                    # log.info(f'live_stream_str: {field}')
-                    # anchor = element.find('a')
-                    # if anchor:
-                    #     meeting['live_stream_url'] = anchor.get('href')
-                    # log.info(f"live_stream_url: {meeting.get('live_stream_url')}")
 
         return [Meeting.from_dict(meeting) for meeting in meetings]
 
