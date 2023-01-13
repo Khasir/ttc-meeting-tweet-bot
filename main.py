@@ -63,6 +63,7 @@ def tweet_meeting_updates():
         prev_tweet_id = response.id
 
         # Tweet each meeting
+        new = sorted(new)
         for meeting in new:
             text = str(meeting)
             response = twitter_api.update_status(
@@ -83,6 +84,7 @@ def tweet_meeting_updates():
         prev_tweet_id = response.id
 
         # Tweet each meeting
+        cancelled = sorted(cancelled)
         for meeting in cancelled:
             text = str(meeting)
             response = twitter_api.update_status(
@@ -114,7 +116,7 @@ def tweet_todays_meetings():
     log.info(f"found {len(meets_to_tweet)} meetings today")
 
     # Tweet them, sorted by time
-    meets_to_tweet = sorted(meets_to_tweet, key=lambda x: x.start_time_parsed_et if x.start_time_parsed_et else datetime.time(23, 59))
+    meets_to_tweet = sorted(meets_to_tweet)
     for meeting in meets_to_tweet:
         text = "MEETING TODAY\n" + str(meeting)
         response = twitter_api.update_status(text)

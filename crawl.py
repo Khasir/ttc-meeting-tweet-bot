@@ -127,7 +127,7 @@ class TTCMeetingsChecker:
         log.info(f'queried and found {len(meetings)} upcoming meetings in DB')
         return meetings
 
-    def get_archived_meetings(self)
+    def get_archived_meetings(self):
         query = "SELECT * FROM archived ORDER BY date_parsed_et DESC"
         with psycopg.connect('dbname=meetings user=postgres password=postgres', row_factory=psycopg.rows.dict_row) as conn:
             results = conn.execute(query)

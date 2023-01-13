@@ -123,5 +123,24 @@ class Meeting:
         text += self.url
         return text
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return str(self.__dict__)
+
+    def __lt__(self, other) -> bool:
+        """
+        Compare based on date and time.
+        """
+        if not self.date_parsed_et:
+            return False
+        if not other.date_parsed_et:
+            return True
+        if self.date_parsed_et < other.date_parsed_et:
+            return True
+        if self.date_parsed_et == other.date_parsed_et:
+            if not self.start_time_parsed_et:
+                return False
+            if not other.start_time_parsed_et:
+                return True
+            if self.start_time_parsed_et < other.start_time_parsed_et:
+                return True
+        return False
