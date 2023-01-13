@@ -123,7 +123,7 @@ class TTCMeetingsChecker:
         query = "SELECT * FROM upcoming"
         with psycopg.connect('dbname=meetings user=postgres password=postgres', row_factory=psycopg.rows.dict_row) as conn:
             results = conn.execute(query)
-        meetings = [Meeting.from_dict(r) for r in results]
+        meetings = [Meeting.from_dict(r, parse=False) for r in results]
         log.info(f'queried and found {len(meetings)} meetings in DB')
         return meetings
 
@@ -140,6 +140,7 @@ class TTCMeetingsChecker:
         Returns:
             new, old, cancelled, completed: lists of meetings.
         """
+        # Compare using the meeting UUIDs
         latest_ids = {meeting.id for meeting in latest}
         previous_ids = {meeting.id for meeting in previous}
 
@@ -156,9 +157,9 @@ class TTCMeetingsChecker:
                 # meeting_datetime = datetime.datetime.combine(meeting.date_parsed, meeting.start_time_parsed)
 
                 # Just use date to be more lenient
-                today = datetime.datetime.now(datetime.timezone.utc).date()
-                # Add to cancelled
-                if meeting.date_parsed > today:
+                today_et = datetime.datetime.now(ZoneInfo("America/Toronto")).date()
+                # Add to cancelled if the scheduled date was still in the future
+                if meeting.date_parsed_et > today_et:
                     cancelled.append(meeting)
                 # Add to completed
                 else:
@@ -184,9 +185,9 @@ class TTCMeetingsChecker:
                         html,
                         title,
                         date_raw,
-                        date_parsed_utc,
+                        date_parsed_et,
                         start_time_raw,
-                        start_time_parsed_utc,
+                        start_time_parsed_et,
                         location,
                         meeting_no,
                         live_stream_str,
@@ -204,9 +205,9 @@ class TTCMeetingsChecker:
                     meeting.html,
                     meeting.title,
                     meeting.date_raw,
-                    meeting.date_parsed_utc,
+                    meeting.date_parsed_et,
                     meeting.start_time_raw,
-                    meeting.start_time_parsed_utc,
+                    meeting.start_time_parsed_et,
                     meeting.location,
                     meeting.meeting_no,
                     meeting.live_stream_str,
@@ -226,9 +227,9 @@ class TTCMeetingsChecker:
                         html,
                         title,
                         date_raw,
-                        date_parsed_utc,
+                        date_parsed_et,
                         start_time_raw,
-                        start_time_parsed_utc,
+                        start_time_parsed_et,
                         location,
                         meeting_no,
                         live_stream_str,
@@ -247,9 +248,9 @@ class TTCMeetingsChecker:
                     meeting.html,
                     meeting.title,
                     meeting.date_raw,
-                    meeting.date_parsed_utc,
+                    meeting.date_parsed_et,
                     meeting.start_time_raw,
-                    meeting.start_time_parsed_utc,
+                    meeting.start_time_parsed_et,
                     meeting.location,
                     meeting.meeting_no,
                     meeting.live_stream_str,
@@ -267,9 +268,9 @@ class TTCMeetingsChecker:
                         html,
                         title,
                         date_raw,
-                        date_parsed_utc,
+                        date_parsed_et,
                         start_time_raw,
-                        start_time_parsed_utc,
+                        start_time_parsed_et,
                         location,
                         meeting_no,
                         live_stream_str,
@@ -288,9 +289,9 @@ class TTCMeetingsChecker:
                     meeting.html,
                     meeting.title,
                     meeting.date_raw,
-                    meeting.date_parsed_utc,
+                    meeting.date_parsed_et,
                     meeting.start_time_raw,
-                    meeting.start_time_parsed_utc,
+                    meeting.start_time_parsed_et,
                     meeting.location,
                     meeting.meeting_no,
                     meeting.live_stream_str,

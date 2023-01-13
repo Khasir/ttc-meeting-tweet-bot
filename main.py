@@ -31,7 +31,12 @@ access_token_secret = os.environ['ACCESS_TOKEN_SECRET']
 auth = tweepy.OAuth1UserHandler(
     consumer_key, consumer_secret, access_token, access_token_secret
 )
+# Tweet object: https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/object-model/tweet
 twitter_api = tweepy.API(auth)
+checker = TTCMeetingsChecker(
+    upcoming_url='https://www.ttc.ca//sxa/search/results/?customdaterangefacet=Upcoming',
+    past_url='https://www.ttc.ca//sxa/search/results/?s={5865C996-6A4C-472A-9116-C59CB3B76093}&itemid={1450DB42-0543-4C73-B159-421DF22D9460}&sig=past&p=8&o=ContentDateFacet%2CDescending&v=%7BF9A088B4-AFC4-4EE7-8649-0ACA83AB2783%7D'
+)
 
 # Logs
 # logging.basicConfig(filename='logs\\ttcmeetbot.log', level=logging.INFO)
@@ -40,20 +45,16 @@ log = logging.getLogger(__name__)
 
 
 @app.route('/', methods=['GET'])
-def tweet_meeting_updates(refresh_token = None):
+def tweet_meeting_updates():
     log.info("checking for meeting updates")
     # Update database
-    checker = TTCMeetingsChecker(
-        upcoming_url='https://www.ttc.ca//sxa/search/results/?customdaterangefacet=Upcoming',
-        past_url='https://www.ttc.ca//sxa/search/results/?s={5865C996-6A4C-472A-9116-C59CB3B76093}&itemid={1450DB42-0543-4C73-B159-421DF22D9460}&sig=past&p=8&o=ContentDateFacet%2CDescending&v=%7BF9A088B4-AFC4-4EE7-8649-0ACA83AB2783%7D'
-    )
     posted_meetings = checker.get_upcoming_meetings()
     known_meetings = checker.get_seen_meetings()
     new, old, cancelled, completed = checker.get_diff_meetings(posted_meetings, known_meetings)
     checker.update_database(new, cancelled, completed)
 
     # New meetings found
-    if len(new):
+    if new:
         text = f"{len(new)} new scheduled meeting"
         text += "s" if len(new) > 1 else ""
         text += "!"
@@ -72,11 +73,37 @@ def tweet_meeting_updates(refresh_token = None):
             log.info(f"tweeted in thread: {text}")
             prev_tweet_id = response.id
 
-    else:
+    # Meetings cancelled
+    if cancelled:
+        text = f"{len(cancelled)} meeting"
+        text += "s" if len(cancelled) > 1 else ""
+        text += " cancelled :("
+        response = twitter_api.update_status(text)
+        log.info(f"tweeted: {text}")
+        prev_tweet_id = response.id
+
+        # Tweet each meeting
+        for meeting in cancelled:
+            text = str(meeting)
+            response = twitter_api.update_status(
+                text,
+                in_reply_to_status_id=prev_tweet_id,
+                auto_populate_reply_metadata=True
+            )
+            log.info(f"tweeted in thread: {text}")
+            prev_tweet_id = response.id
+
+    if not new and not cancelled:
         log.info("no meeting updates found")
 
     log.info("checked for meeting updates successfully")
     return "Success", 200
+
+
+def tweet_todays_meetings():
+    meetings = checker.get_seen_meetings()
+    for meeting in meetings:
+        pass
 
 
 if __name__ == '__main__':
