@@ -22,10 +22,14 @@ VERSION = "0.1"
 
 
 class TTCMeetingsChecker:
-    def __init__(self, upcoming_url: str, past_url: str, base_url: str = 'https://www.ttc.ca'):
+    def __init__(self, upcoming_url: str, past_url: str, dbname: str, dbuser: str, dbpassfile: str, base_url: str = 'https://www.ttc.ca'):
         self.upcoming_url = upcoming_url
         self.past_url = past_url
         self.base_url = base_url
+
+        self.dbname = dbname
+        self.dbuser = dbuser
+        self.dbpassfile = dbpassfile
 
         self.headers = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
@@ -121,7 +125,7 @@ class TTCMeetingsChecker:
             meetings: list of previously seen meetings
         """
         query = "SELECT * FROM upcoming ORDER BY date_parsed_et ASC"
-        with psycopg.connect('dbname=meetings user=ubuntu passfile=psql-pgpass.key', row_factory=psycopg.rows.dict_row) as conn:
+        with psycopg.connect(f'dbname={self.dbname} user={self.dbuser} passfile={self.dbpassfile}', row_factory=psycopg.rows.dict_row) as conn:
             results = conn.execute(query)
         meetings = [Meeting.from_dict(r, parse=False) for r in results]
         log.info(f'queried and found {len(meetings)} upcoming meetings in DB')
@@ -129,7 +133,7 @@ class TTCMeetingsChecker:
 
     def get_archived_meetings(self):
         query = "SELECT * FROM archived ORDER BY date_parsed_et DESC"
-        with psycopg.connect('dbname=meetings user=ubuntu passfile=psql-pgpass.key', row_factory=psycopg.rows.dict_row) as conn:
+        with psycopg.connect(f'dbname={self.dbname} user={self.dbuser} passfile={self.dbpassfile}', row_factory=psycopg.rows.dict_row) as conn:
             results = conn.execute(query)
         meetings = [Meeting.from_dict(r, parse=False) for r in results]
         log.info(f'queried and found {len(meetings)} archived meetings in DB')
@@ -180,7 +184,7 @@ class TTCMeetingsChecker:
         """
         Insert new meetings and archive the cancelled or completed meetings from the database.
         """
-        with psycopg.connect('dbname=meetings user=postgres password=postgres') as conn:
+        with psycopg.connect(f'dbname={self.dbname} user={self.dbuser} passfile={self.dbpassfile}') as conn:
             # Insert new meetings
             for meeting in new:
                 query = """

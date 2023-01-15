@@ -138,15 +138,18 @@ class TTCMeetBot:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("credential_file", help='The file containing Twitter credentials')
     parser.add_argument("mode", choices=["update", "today"], help='The mode to run the bot in')
+    parser.add_argument("twitter_credential_file", help='The file containing Twitter credentials')
+    parser/add_argument("db_name")
+    parser.add_argument("db_username")
+    parser.add_argument("db_credential_file", help="The file containing the postgreSQL database credentials")
     parser.add_argument("--dry-run", action="store_true", help="Run without tweeting", dest='dry_run')
     args = parser.parse_args()
 
-    with open(os.path.expanduser(args.credential_file), 'r', encoding='utf-8') as file:
+    with open(os.path.expanduser(args.twitter_credential_file), 'r', encoding='utf-8') as file:
         creds = json.load(file)
 
-    bot = TTCMeetBot(**creds)
+    bot = TTCMeetBot(**creds, dbname=args.db_name, dbuser=args.db_username, dbpassfile=args.db_credential_file)
     if args.mode == 'update':
         bot.tweet_meeting_updates(dry_run=args.dry_run)
     elif args.mode == 'today':
