@@ -17,8 +17,8 @@ from checker import TTCMeetingsChecker
 
 
 # Logs
-# logging.basicConfig(filename='logs\\ttcmeetbot.log', level=logging.INFO)
-logging.basicConfig(level=logging.INFO)
+os.makedirs(os.path.expanduser("~/logs"), exist_ok=True)
+logging.basicConfig(filename=os.path.expanduser('~/logs/ttcmeetbot.log'), encoding='utf-8', level=logging.INFO)
 log = logging.getLogger(__name__)
 
 
