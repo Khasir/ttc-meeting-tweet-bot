@@ -121,7 +121,7 @@ class TTCMeetingsChecker:
             meetings: list of previously seen meetings
         """
         query = "SELECT * FROM upcoming ORDER BY date_parsed_et ASC"
-        with psycopg.connect('dbname=meetings user=postgres password=postgres', row_factory=psycopg.rows.dict_row) as conn:
+        with psycopg.connect('dbname=meetings user=ubuntu passfile=psql-pgpass.key', row_factory=psycopg.rows.dict_row) as conn:
             results = conn.execute(query)
         meetings = [Meeting.from_dict(r, parse=False) for r in results]
         log.info(f'queried and found {len(meetings)} upcoming meetings in DB')
@@ -129,7 +129,7 @@ class TTCMeetingsChecker:
 
     def get_archived_meetings(self):
         query = "SELECT * FROM archived ORDER BY date_parsed_et DESC"
-        with psycopg.connect('dbname=meetings user=postgres password=postgres', row_factory=psycopg.rows.dict_row) as conn:
+        with psycopg.connect('dbname=meetings user=ubuntu passfile=psql-pgpass.key', row_factory=psycopg.rows.dict_row) as conn:
             results = conn.execute(query)
         meetings = [Meeting.from_dict(r, parse=False) for r in results]
         log.info(f'queried and found {len(meetings)} archived meetings in DB')
