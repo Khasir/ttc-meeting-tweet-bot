@@ -46,14 +46,16 @@ class TTCMeetBot:
         Check TTC website for any meeting updates and tweet them.
 
         Params:
-            dry_run: (bool=False) whether this is a dry run (ie. test without tweeting).
+            dry_run: (bool=False) whether this is a dry run (ie. test without tweeting or making any state changes).
         """
         log.info("checking for meeting updates")
         # Update database
         posted_meetings = self.checker.get_upcoming_meetings()
         known_meetings = self.checker.get_seen_meetings()
         new, old, cancelled, completed = self.checker.get_diff_meetings(posted_meetings, known_meetings)
-        self.checker.update_database(new, cancelled, completed)
+
+        if not dry_run:
+            self.checker.update_database(new, cancelled, completed)
 
         # New meetings found
         if new:
@@ -113,7 +115,7 @@ class TTCMeetBot:
         Check internal database for any meetings today and tweet them.
 
         Params:
-            dry_run: (bool=False) whether this is a dry run (ie. test without tweeting).
+            dry_run: (bool=False) whether this is a dry run (ie. test without tweeting or making any state changes).
         """
         log.info("checking for today's meetings")
         meetings = self.checker.get_seen_meetings()
