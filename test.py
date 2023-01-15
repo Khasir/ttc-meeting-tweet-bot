@@ -2,6 +2,7 @@ from checker import TTCMeetingsChecker
 
 
 def main():
+    print("test: access database")
     checker = TTCMeetingsChecker(None, None)
     seen = checker.get_seen_meetings()
     archived = checker.get_archived_meetings()

@@ -41,7 +41,13 @@ class TTCMeetBot:
         )
 
 
-    def tweet_meeting_updates(self):
+    def tweet_meeting_updates(self, dry_run=False):
+        """
+        Check TTC website for any meeting updates and tweet them.
+
+        Params:
+            dry_run: (bool=False) whether this is a dry run (ie. test without tweeting).
+        """
         log.info("checking for meeting updates")
         # Update database
         posted_meetings = self.checker.get_upcoming_meetings()
@@ -54,42 +60,46 @@ class TTCMeetBot:
             text = f"{len(new)} new scheduled meeting"
             text += "s" if len(new) > 1 else ""
             text += "!"
-            response = self.twitter_api.update_status(text)
+            if not dry_run:
+                response = self.twitter_api.update_status(text)
+                prev_tweet_id = response.id
             log.info(f"tweeted: {text}")
-            prev_tweet_id = response.id
 
             # Tweet each meeting
             new = sorted(new)
             for meeting in new:
                 text = str(meeting)
-                response = self.twitter_api.update_status(
-                    text,
-                    in_reply_to_status_id=prev_tweet_id,
-                    auto_populate_reply_metadata=True
-                )
+                if not dry_run:
+                    response = self.twitter_api.update_status(
+                        text,
+                        in_reply_to_status_id=prev_tweet_id,
+                        auto_populate_reply_metadata=True
+                    )
+                    prev_tweet_id = response.id
                 log.info(f"tweeted in thread: {text}")
-                prev_tweet_id = response.id
 
         # Meetings cancelled
         if cancelled:
             text = f"{len(cancelled)} meeting"
             text += "s" if len(cancelled) > 1 else ""
             text += " cancelled :("
-            response = self.twitter_api.update_status(text)
+            if not dry_run:
+                response = self.twitter_api.update_status(text)
+                prev_tweet_id = response.id
             log.info(f"tweeted: {text}")
-            prev_tweet_id = response.id
 
             # Tweet each meeting
             cancelled = sorted(cancelled)
             for meeting in cancelled:
                 text = str(meeting)
-                response = self.twitter_api.update_status(
-                    text,
-                    in_reply_to_status_id=prev_tweet_id,
-                    auto_populate_reply_metadata=True
-                )
+                if not dry_run:
+                    response = self.twitter_api.update_status(
+                        text,
+                        in_reply_to_status_id=prev_tweet_id,
+                        auto_populate_reply_metadata=True
+                    )
+                    prev_tweet_id = response.id
                 log.info(f"tweeted in thread: {text}")
-                prev_tweet_id = response.id
 
         if not new and not cancelled:
             log.info("no meeting updates found")
@@ -98,7 +108,13 @@ class TTCMeetBot:
         return "Success", 200
 
 
-    def tweet_todays_meetings(self):
+    def tweet_todays_meetings(self, dry_run=False):
+        """
+        Check internal database for any meetings today and tweet them.
+
+        Params:
+            dry_run: (bool=False) whether this is a dry run (ie. test without tweeting).
+        """
         log.info("checking for today's meetings")
         meetings = self.checker.get_seen_meetings()
         meetings += self.checker.get_archived_meetings()
@@ -115,7 +131,8 @@ class TTCMeetBot:
         meets_to_tweet = sorted(meets_to_tweet)
         for meeting in meets_to_tweet:
             text = "MEETING TODAY\n" + str(meeting)
-            response = self.twitter_api.update_status(text)
+            if not dry_run:
+                response = self.twitter_api.update_status(text)
             log.info(f"tweeted: {text}")
 
         log.info("done checking for today's meetings")
@@ -125,6 +142,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("credential_file", help='The file containing Twitter credentials')
     parser.add_argument("mode", choices=["update", "today"], help='The mode to run the bot in')
+    parser.add_argument("dry_run", type=bool, action="store_true", help="Run without tweeting")
     args = parser.parse_args()
 
     with open(os.path.expanduser(args.credential_file), 'r', encoding='utf-8') as file:
@@ -132,6 +150,6 @@ if __name__ == '__main__':
 
     bot = TTCMeetBot(**creds)
     if args.mode == 'update':
-        bot.tweet_meeting_updates()
+        bot.tweet_meeting_updates(dry_run=args.dry_run)
     elif args.mode == 'today':
-        bot.tweet_todays_meetings()
+        bot.tweet_todays_meetings(dry_run=args.dry_run)
