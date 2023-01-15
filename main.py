@@ -13,7 +13,7 @@ from zoneinfo import ZoneInfo
 import requests
 import tweepy
 
-from crawl import TTCMeetingsChecker
+from checker import TTCMeetingsChecker
 
 
 # consumer_key = os.environ['CONSUMER_KEY']
@@ -144,7 +144,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("credential_file", help='The file containing Twitter credentials')
     parser.add_argument("mode", choices=["update", "today"], help='The mode to run the bot in')
-    parser.add_argument("dry_run", type=bool, action="store_true", help="Run without tweeting")
+    parser.add_argument("--dry_run", action="store_true", help="Run without tweeting")
     args = parser.parse_args()
 
     with open(os.path.expanduser(args.credential_file), 'r', encoding='utf-8') as file:
