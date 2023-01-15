@@ -140,7 +140,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("mode", choices=["update", "today"], help='The mode to run the bot in')
     parser.add_argument("twitter_credential_file", help='The file containing Twitter credentials')
-    parser/add_argument("db_name")
+    parser.add_argument("db_name")
     parser.add_argument("db_username")
     parser.add_argument("db_credential_file", help="The file containing the postgreSQL database credentials")
     parser.add_argument("--dry-run", action="store_true", help="Run without tweeting", dest='dry_run')
