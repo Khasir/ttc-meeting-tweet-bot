@@ -2,7 +2,7 @@ from checker import TTCMeetingsChecker
 
 
 def main():
-    print("test: access database")
+    print("START test: access database")
     checker = TTCMeetingsChecker(None, None)
     seen = checker.get_seen_meetings()
     archived = checker.get_archived_meetings()
@@ -10,7 +10,7 @@ def main():
     assert not old
     assert not cancelled
     assert not completed
-    print("test passed")
+    print("PASS test: access database")
     return
 
 
