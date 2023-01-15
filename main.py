@@ -8,6 +8,7 @@ import datetime
 import json
 import logging
 import os
+import sys
 from zoneinfo import ZoneInfo
 
 import requests
@@ -17,8 +18,9 @@ from checker import TTCMeetingsChecker
 
 
 # Logs
-os.makedirs(os.path.expanduser("~/logs"), exist_ok=True)
-logging.basicConfig(filename=os.path.expanduser('~/logs/ttcmeetbot.log'), encoding='utf-8', level=logging.INFO, format='%(asctime)s|%(levelname)s|%(name)s|%(message)s')
+#os.makedirs(os.path.expanduser("~/logs"), exist_ok=True)
+#logging.basicConfig(filename=os.path.expanduser('~/logs/ttcmeetbot.log'), encoding='utf-8', level=logging.INFO, format='%(asctime)s|%(levelname)s|%(name)s|%(message)s')
+logging.basicConfig(stream=sys.stdout, encoding='utf-8', level=logging.INFO, format='%(asctime)s|%(levelname)s|%(name)s|%(message)s')
 log = logging.getLogger(__name__)
 
 
