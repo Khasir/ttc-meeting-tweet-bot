@@ -25,7 +25,7 @@ log = logging.getLogger(__name__)
 
 
 class TTCMeetBot:
-    def __init__(self, consumer_key, consumer_key_secret, access_token, access_token_secret):
+    def __init__(self, consumer_key, consumer_key_secret, access_token, access_token_secret, dbname, dbuser, dbpassfile):
         auth = tweepy.OAuth1UserHandler(
             consumer_key, consumer_key_secret, access_token, access_token_secret
         )
@@ -33,7 +33,10 @@ class TTCMeetBot:
         self.twitter_api = tweepy.API(auth)
         self.checker = TTCMeetingsChecker(
             upcoming_url='https://www.ttc.ca//sxa/search/results/?customdaterangefacet=Upcoming',
-            past_url='https://www.ttc.ca//sxa/search/results/?s={5865C996-6A4C-472A-9116-C59CB3B76093}&itemid={1450DB42-0543-4C73-B159-421DF22D9460}&sig=past&p=8&o=ContentDateFacet%2CDescending&v=%7BF9A088B4-AFC4-4EE7-8649-0ACA83AB2783%7D'
+            past_url='https://www.ttc.ca//sxa/search/results/?s={5865C996-6A4C-472A-9116-C59CB3B76093}&itemid={1450DB42-0543-4C73-B159-421DF22D9460}&sig=past&p=8&o=ContentDateFacet%2CDescending&v=%7BF9A088B4-AFC4-4EE7-8649-0ACA83AB2783%7D',
+            dbname=dbname,
+            dbuser=dbuser,
+            dbpassfile=dbpassfile
         )
 
 
