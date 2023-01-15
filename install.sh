@@ -39,3 +39,7 @@ cat << EOF >> twitter-key.key
 }
 EOF
 echo "Insert your Twitter consumer and access keys into twitter-key.txt."
+
+# Change timezone
+# TODO ask user/set in config
+sudo ln -sf /usr/share/zoneinfo/Canada/Eastern /etc/localtime
